@@ -75,12 +75,16 @@ def create_dataset(i):
     for target_node in range(num_nodes):
         for source_node in range(target_node):
             if data[source_node][target_node] == 1:
-                valid_paths = []
-
                 # Check if there exists a path of length at least 2 using the graph
                 if nx.has_path(random_digraph, source_node, target_node):
-                    valid_paths = [path for path in nx.all_simple_paths(random_digraph, source_node, target_node) if
-                                   len(path) >= 3]
+                    valid_paths = []
+                    iter = 0
+                    while len(valid_paths) < train_num_per_pair and iter < train_num_per_pair*5:
+                        print(f"target: {target_node}, iter: {iter}")
+                        path = random_walk(source_node, target_node)
+                        if len(path) > 2:
+                            valid_paths.append(path)
+                        iter += 1
 
                 if valid_paths:
                     for _ in range(train_num_per_pair):
@@ -105,13 +109,20 @@ def create_dataset(i):
                 if not nx.has_path(random_digraph, source_node, target_node):
                     data[source_node][target_node] = 0  # No longer reachable, update to 0
                 else:
-                    valid_paths = [path for path in nx.all_simple_paths(random_digraph, source_node, target_node) if
-                                   len(path) >= 3]
-                    if valid_paths:
-                        path = random.choice(valid_paths)  # Randomly sample a path
-                        median_index = len(path) // 2  # Select median position
-                        intermediate_node = path[median_index]  # Pick median node as intermediate
-                        test_set.append([source_node, intermediate_node, target_node] + path)
+                    valid_paths = []
+                    iter = 0
+                    while len(valid_paths) < train_num_per_pair and iter < train_num_per_pair * 5:
+                        print(f"target: {target_node}, iter: {iter}")
+                        path = random_walk(source_node, target_node)
+                        if len(path) > 2:
+                            valid_paths.append(path)
+                        iter += 1
+
+                if valid_paths:
+                    path = random.choice(valid_paths)  # Randomly sample a path
+                    median_index = len(path) // 2  # Select median position
+                    intermediate_node = path[median_index]  # Pick median node as intermediate
+                    test_set.append([source_node, intermediate_node, target_node] + path)
 
     return train_set, test_set
 
