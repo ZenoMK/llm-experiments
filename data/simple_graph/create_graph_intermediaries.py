@@ -85,7 +85,8 @@ def create_dataset(i):
                 if valid_paths:
                     for _ in range(train_num_per_pair):
                         path = random.choice(valid_paths)  # Randomly sample a path
-                        intermediate_node = random.choice(path[1:-1])  # Pick a node that is not source or target
+                        median_index = len(path) // 2  # Select median position
+                        intermediate_node = path[median_index]  # Pick median node as intermediate
                         train_set.append([source_node, intermediate_node, target_node] + path)
 
     # Remove edges that are not in any path in the train set
@@ -108,7 +109,8 @@ def create_dataset(i):
                                    len(path) >= 3]
                     if valid_paths:
                         path = random.choice(valid_paths)  # Randomly sample a path
-                        intermediate_node = random.choice(path[1:-1])  # Pick a node that is not source or target
+                        median_index = len(path) // 2  # Select median position
+                        intermediate_node = path[median_index]  # Pick median node as intermediate
                         test_set.append([source_node, intermediate_node, target_node] + path)
 
     return train_set, test_set
