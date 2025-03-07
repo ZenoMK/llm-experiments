@@ -359,98 +359,61 @@ class AttentionVisualizer:
             gamma=0.5,
     ):
         """
-        Perform inference and visualize attention weights for given heads and layers.
-
-        Args:
-            input_text (str): The input text to analyze.
-            heads (list[int]): List of attention heads to visualize.
-            layers (list[int]): List of Transformer layers to analyze.
-            save_path (str): Path to save the attention weights plot.
-            use_power_scale (bool): Whether to apply power scale normalization.
-            gamma (float): The gamma value for power normalization if use_power_scale is True.
+        Perform inference and visualize attention weights for given heads and layers,
+        separately for paths of different lengths.
         """
-
-
-        # Decode tokens for labels
-        #labels = [decode([_token]) for _token in encoded_input]
-        #print("Labels:", labels)
-        # In the plot, set labels size on axis x , y and title, to 0.5
         plt.rc("xtick", labelsize=4)
         plt.rc("ytick", labelsize=4)
         plt.rc("axes", titlesize=4)
 
-        # Set model to evaluation mode and run inference
         self.model.eval()
-        #self.model(encoded_input_tensor)
-        paths = []
+        paths_by_length = {}
 
-        with (open(self.test_path, "r") as file):
+        # Group paths by length
+        with open(self.test_path, "r") as file:
             for line in file:
                 numbers = line.split()
-                if len(numbers) == 8:
-                    paths.append(" ".join(numbers))
+                path_length = len(numbers)
+                if path_length not in paths_by_length:
+                    paths_by_length[path_length] = []
+                paths_by_length[path_length].append(" ".join(numbers))
 
-        for layer in layers:
-            for head in heads:
-                all_attns = np.zeros((8,8))
+        for path_length, paths in paths_by_length.items():
+            for layer in layers:
+                for head in heads:
+                    all_attns = np.zeros((path_length, path_length))
 
-                # average the attention over all length-8 paths
-                for path in paths:
-                    if problem == "cut":
-                        data.simple_graph.prepare_minigpt_cut.encode(path)
-                    else:
-                        encoded_input = self.encode(path)
-                    encoded_input_tensor = torch.tensor(encoded_input).unsqueeze(0)
-                    logits, loss, attn_weights = self.model(encoded_input_tensor, return_attn_weights=True)
-                    if attn_weights is None or len(attn_weights) == 0:
-                        raise ValueError("Attention weights are missing. Ensure the model outputs them.")
+                    for path in paths:
+                        if problem == "cut":
+                            data.simple_graph.prepare_minigpt_cut.encode(path)
+                        else:
+                            encoded_input = self.encode(path)
+                        encoded_input_tensor = torch.tensor(encoded_input).unsqueeze(0)
+                        logits, loss, attn_weights = self.model(encoded_input_tensor, return_attn_weights=True)
+                        if attn_weights is None or len(attn_weights) == 0:
+                            raise ValueError("Attention weights are missing. Ensure the model outputs them.")
 
-                    attn_layer = attn_weights[layer]
-                    if isinstance(attn_layer, torch.Tensor):  # If it's a single tensor
-                        attn_matrix = attn_layer[0, head].detach().numpy()
-                    elif isinstance(attn_layer, list):  # If it's a list of tensors
-                        attn_matrix = attn_layer[head][0].detach().numpy()
-                    else:
-                        raise TypeError(f"Unexpected attention weight type: {type(attn_layer)}")
-                    all_attns = np.add(all_attns, attn_matrix)
+                        attn_layer = attn_weights[layer]
+                        if isinstance(attn_layer, torch.Tensor):
+                            attn_matrix = attn_layer[0, head].detach().numpy()
+                        elif isinstance(attn_layer, list):
+                            attn_matrix = attn_layer[head][0].detach().numpy()
+                        else:
+                            raise TypeError(f"Unexpected attention weight type: {type(attn_layer)}")
+                        all_attns = np.add(all_attns, attn_matrix)
 
-                all_attns = np.divide(all_attns, len(paths))
-                print(len(paths))
-                self.plot_attention(all_attns,head,layer)
+                    all_attns = np.divide(all_attns, len(paths))
+                    print(f"Path length {path_length}: {len(paths)} samples")
+                    self.plot_attention(all_attns, head, layer, path_length)
 
-
-
-        # Create a multiplot figure
-        fig, axes = plt.subplots(len(layers), len(heads), figsize=(8, 8))
-
-        # Handle case where axes may not be a 2D array
-        if len(layers) == 1 and len(heads) == 1:
-            axes = [[axes]]
-        elif len(layers) == 1:
-            axes = [axes]
-        elif len(heads) == 1:
-            axes = [[ax] for ax in axes]
-
-        print("Type of attn_weights:", type(attn_weights[0]))
-        print("Length of attn_weights:", len(attn_weights) if attn_weights else "None")
-        print("Example shape:", attn_weights[0].shape if attn_weights else "None")
-
-
-        # Extract attention weights
-        #self.plot_attention(attn_weights, layer, head)
-
-    def plot_attention(self, attn_matrix, layer=0, head=0):
-
-
-        #plt.figure(figsize=(8, 6))
-        sns.heatmap(attn_matrix, cmap="viridis")#, xticklabels=sentence, yticklabels=sentence)
+    def plot_attention(self, attn_matrix, head=0, layer=0, path_length=0):
+        plt.figure(figsize=(10, 8))  # Ensure consistent scaling
+        sns.heatmap(attn_matrix, cmap="viridis", cbar=True, square=True)
         plt.xlabel("Key Tokens")
         plt.ylabel("Query Tokens")
-        plt.title(f"Attention Head {head} - Layer {layer}")
-        print(type(self.out_dir))
-
-        plt.savefig(os.path.join(self.out_dir,f"attention_{str(layer)}_layer_{str(head)}head.png"))
-        #print(f"Attention weights saved to {save_path}")
+        plt.title(f"Attention Head {head} - Layer {layer} - Path Length {path_length}")
+        plt.savefig(os.path.join(self.out_dir, f"attention_{layer}_layer_{head}_head_length_{path_length}.png"))
+        plt.close()
 
     def _plot_attention(
             self,
