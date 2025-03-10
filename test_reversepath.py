@@ -99,7 +99,7 @@ def check_path(G, gen_str):
     if len(path) < 5:
         return 'wrong syntax'
 
-    path = list(map(int, path))  # Convert extracted strings to integers
+    #path = list(map(int, path))  # Convert extracted strings to integers
 
     for node in path:
         if node not in G:
@@ -130,7 +130,9 @@ def check_path(G, gen_str):
             return f'non-existence reverse path {return_path[i + 1], return_path[i]}'
 
     # Check if the forward path is the reverse of the return path (excluding end node)
-    if forward_path[:-1] != return_path[-2:0:-1]:
+    if not forward_path == list(reversed(return_path)):
+        print(forward_path)
+        print(return_path)
         return 'forward path is not the reverse of return path'
 
     return ''
