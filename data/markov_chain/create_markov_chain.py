@@ -68,6 +68,7 @@ def random_walk(source_node):
 
 def create_dataset(i):
     train_set = []
+    test_set = []
     train_num_per_pair = max(i, 1)
     for source_node in range(num_nodes):
         num_paths = 0
@@ -76,7 +77,7 @@ def create_dataset(i):
             train_set.append(path)
             num_paths += 1
 
-    return train_set
+    return train_set, test_set
 
 
 
@@ -137,11 +138,13 @@ if __name__ == "__main__":
         os.makedirs(folder_name)
 
 
-    train_set = create_dataset(num_of_paths)
+    train_set, test_set = create_dataset(num_of_paths)
 
     obtain_stats(train_set)
+    print('number of source target pairs:', len(test_set))
 
     write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/train_{num_of_paths}.txt'))
+    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/test.txt'))
     nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/path_graph.graphml'))
 
 
