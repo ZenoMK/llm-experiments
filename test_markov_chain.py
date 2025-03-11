@@ -49,18 +49,16 @@ def evaluate_model_against_graph(model, G, tokenizer):
 
     for node in G.nodes():
         neighbors = list(G.successors(node))
-        if not neighbors:
-            continue
+        weights = {neighbor: G[node][neighbor]['weight'] for neighbor in neighbors}
 
-        weights = [G[node][neighbor]['weight'] for neighbor in neighbors]
         input_tensor = torch.tensor([encode(node)]).unsqueeze(0)  # Example input format
         with torch.no_grad():
             output = model(input_tensor)[0]
             probabilities = torch.nn.functional.softmax(output, dim=-1).squeeze().tolist()
 
-        for idx, neighbor in enumerate(neighbors):
-            real_probs_matrix[int(node), int(neighbor)] = weights[idx]
-            pred_probs_matrix[int(node), int(neighbor)] = probabilities[encode(str(idx))]
+        for target in G.nodes():  # Compare over the entire state space
+            real_probs_matrix[int(node), int(target)] = weights.get(target, 0.0)
+            pred_probs_matrix[int(node), int(target)] = probabilities[encode(target)]
 
     # Compute RMSE
     rmse = np.sqrt(np.mean((real_probs_matrix - pred_probs_matrix) ** 2))
@@ -68,6 +66,8 @@ def evaluate_model_against_graph(model, G, tokenizer):
 
     # Compute absolute and relative errors
     abs_error = np.abs(real_probs_matrix - pred_probs_matrix)
+
+    print(f"Mean abs error: {np.mean(abs_error)}")
     relative_error = np.divide(abs_error, real_probs_matrix, where=real_probs_matrix != 0)
     # Plot heatmaps
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
