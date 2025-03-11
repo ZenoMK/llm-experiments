@@ -50,11 +50,11 @@ def obtain_reachability(TC):
     return reachability, pairs
 
 
-def random_walk(source_node, target_node):
+def random_walk(source_node):
     current_node = source_node
     path = [current_node]
 
-    while current_node != target_node:
+    while len(path) < 20:
         neighbors = list(random_digraph.successors(current_node))
         if not neighbors:
             return False  # No outgoing edges, terminate walk
@@ -68,33 +68,15 @@ def random_walk(source_node, target_node):
 
 def create_dataset(i):
     train_set = []
-    test_set = []
     train_num_per_pair = max(i, 1)
-    for target_node in range(num_nodes):
-        cnt = 0  # to avoid some target not appear in training dataset
-        for source_node in range(num_nodes):
-            if (data[source_node][target_node] == 1):
-                num_paths = 0
-                iter = 0
-                while num_paths < train_num_per_pair and iter < num_nodes**2:
-                    print(f"Target: {target_node}, iter: {iter}")
-                    path = random_walk(source_node, target_node)
-                    if path:
-                        train_set.append(random_walk(source_node, target_node))
-                        num_paths += 1
-                    iter += 1
-            if (data[source_node][target_node] == -1):
-                iter = 0
-                num_paths = 0
-                while num_paths < 1 and iter < num_nodes ** 2:
-                    path = random_walk(source_node, target_node)
-                    if path:
-                        train_set.append([source_node, target_node] + random_walk(source_node, target_node))
-                        num_paths += 1
-                    iter += 1
-                test_set.append([source_node, target_node] + random_walk(source_node, target_node))
+    for source_node in range(num_nodes):
+        num_paths = 0
+        while num_paths < train_num_per_pair:
+            path = random_walk(source_node)
+            train_set.append(path)
+            num_paths += 1
 
-    return train_set, test_set
+    return train_set
 
 
 
@@ -154,28 +136,12 @@ if __name__ == "__main__":
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
-    data = numpy.zeros([num_nodes, num_nodes])
-    for target_node in range(num_nodes):
-        cnt = 0  # to avoid some target not appear in training dataset
-        for source_node in range(num_nodes):
-            if source_node in reachability[target_node]:
-                if (random_digraph.has_edge(source_node, target_node)) or random.random() < chance_in_train or cnt < 1:
-                    data[source_node][target_node] = 1
-                    cnt += 1
-                else:
-                    data[source_node][target_node] = -1
-                # if (random_digraph.has_edge(source_node, target_node)):
-                #    data[source_node][target_node] = 1
-                # else:
-                #    data[source_node][target_node] = -1
 
-    train_set, test_set = create_dataset(num_of_paths)
+    train_set = create_dataset(num_of_paths)
 
     obtain_stats(train_set)
-    print('number of source target pairs:', len(test_set))
 
     write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/train_{num_of_paths}.txt'))
-    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/test.txt'))
     nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/path_graph.graphml'))
 
 
