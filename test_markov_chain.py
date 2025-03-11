@@ -39,9 +39,9 @@ config = args.config
 
 
 
-def evaluate_model_against_graph(model_path, G, tokenizer):
-    model = torch.load(model_path)
-    model.eval()
+def evaluate_model_against_graph(model, G, tokenizer):
+    #model = torch.load(model_path, torch.device('cpu'))
+    #model.eval()
 
     num_states = len(G.nodes())
     real_probs_matrix = np.zeros((num_states, num_states))
@@ -53,14 +53,14 @@ def evaluate_model_against_graph(model_path, G, tokenizer):
             continue
 
         weights = [G[node][neighbor]['weight'] for neighbor in neighbors]
-        input_tensor = torch.tensor([node]).unsqueeze(0)  # Example input format
+        input_tensor = torch.tensor([encode(node)]).unsqueeze(0)  # Example input format
         with torch.no_grad():
-            output = model(input_tensor)
+            output = model(input_tensor)[0]
             probabilities = torch.nn.functional.softmax(output, dim=-1).squeeze().tolist()
 
         for idx, neighbor in enumerate(neighbors):
-            real_probs_matrix[node, neighbor] = weights[idx]
-            pred_probs_matrix[node, neighbor] = probabilities[neighbor]
+            real_probs_matrix[int(node), int(neighbor)] = weights[idx]
+            pred_probs_matrix[int(node), int(neighbor)] = probabilities[encode(str(idx))]
 
     # Compute RMSE
     rmse = np.sqrt(np.mean((real_probs_matrix - pred_probs_matrix) ** 2))
@@ -69,18 +69,21 @@ def evaluate_model_against_graph(model_path, G, tokenizer):
     # Compute absolute and relative errors
     abs_error = np.abs(real_probs_matrix - pred_probs_matrix)
     relative_error = np.divide(abs_error, real_probs_matrix, where=real_probs_matrix != 0)
-
     # Plot heatmaps
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    sns.heatmap(abs_error, ax=axes[0], cmap="Reds", annot=True)
+    sns.heatmap(abs_error, ax=axes[0], cmap="Reds")
     axes[0].set_title("Absolute Errors")
 
-    sns.heatmap(relative_error, ax=axes[1], cmap="Blues", annot=True)
+    sns.heatmap(relative_error, ax=axes[1], cmap="Blues")
     axes[1].set_title("Relative Errors")
 
     plt.savefig(out_dir + f'errors.png', dpi=400)
 
     return True
+
+def encode(s):
+    return stoi[s]
+
 
 
 data_path = f'data/{dataset}/{num_nodes}_{problem}'
@@ -104,7 +107,8 @@ if(num_of_paths == 0):
     ckpt_path = os.path.join(out_dir, f'{ckpt_iter}_ckpt.pt')
 else:
     ckpt_path = os.path.join(out_dir, f'{ckpt_iter}_ckpt_{num_of_paths}.pt')
-checkpoint = torch.load(ckpt_path, map_location=device)
+
+checkpoint = torch.load(ckpt_path, map_location=torch.device('cpu'))
 gptconf = GPTConfig(**checkpoint['model_args'])
 model = GPT(gptconf)
 state_dict = checkpoint['model']
@@ -117,4 +121,4 @@ model.load_state_dict(state_dict)
 model.eval()
 model.to(device)
 
-evaluate_model_against_graph(ckpt_path, path_graph, tokenizer)
+evaluate_model_against_graph(model, path_graph, tokenizer)
