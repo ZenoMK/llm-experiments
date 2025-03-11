@@ -75,11 +75,23 @@ path_graph = nx.read_graphml(path_graph)
 
 
 def find_third_number_position(number_string):
+    """
+        path = number_string.split()
+    start, end = path[0], path[1]
+
+    # Find the index where the path reaches 'end'
+    try:
+        split_idx = path.index(end, 2)  # Look for 'end' after the first two elements
+    except ValueError:
+        return 'incorrect path, does not reach end'
+
+    position = sum(len(num) for num in path[:split_idx+1]) + split_idx #- 1
+    return position
+"""
     numbers = number_string.split()
     third_number_index = 2
-    position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index - 1
+    position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1
     return position
-
 
 def encode(s):
     ss = s.split(" ")
@@ -168,7 +180,13 @@ for line in f:
     ground_truth.append(line)
 
 ground_truth = np.array(ground_truth)
-encode_texts = torch.tensor(encode_texts, dtype=torch.long, device=device)
+from torch.nn.utils.rnn import pad_sequence
+
+# Convert list of lists to tensors (assuming each sublist is a tensor)
+encode_texts = [torch.tensor(seq, dtype=torch.long) for seq in encode_texts]
+
+# Pad sequences to max length (e.g., 4)
+encode_texts = pad_sequence(encode_texts, batch_first=True, padding_value=0)
 
 from tqdm import tqdm
 
@@ -183,11 +201,13 @@ non_reverses = 0
 for i in tqdm(range(10)):
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
-
+    print(x[0])
     # x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-
-    y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(batch_size)]
+    PAD_TOKEN = 0  # or whatever your model's padding token is
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(batch_size)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(batch_size)]
+    print(y_pred[0])
 
     # Lists to store path lengths
     correct_lengths = []
