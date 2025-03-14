@@ -36,7 +36,7 @@ The (optional) configurations include
 ## Model Training and Testing
 To train the model, we run
 
-    python train.py
+    python train-scripts/train.py
 
 
 The  (optional) configurations include 
@@ -55,7 +55,7 @@ The models are stored in "out_dir = f'out/{dataset}_{n_layer}_{n_head}_{n_embd}_
 
 To test the model, we run
 
-    python test_simple.py 
+    python test-scripts/test_simple.py 
 The  (optional) configurations include 
 
     parser.add_argument('--ckpt_iter', type=int, default=10000)

@@ -17,19 +17,22 @@ $ torchrun --nproc_per_node=8 --nnodes=2 --node_rank=1 --master_addr=123.456.123
 """
 
 import os
+import sys
 import time
 import math
 import pickle
 from contextlib import nullcontext
 import argparse
 
-
 import numpy as np
 import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 import networkx as nx
-import re 
+import re
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from model import GPTConfig, GPT
 from logger import get_logger
@@ -47,7 +50,6 @@ parser.add_argument('--n_embd', type=int, default=120, help='Size of the embeddi
 parser.add_argument('--max_iters', type=int, default=10000, help='Number of Iterations (default: 10000)')
 parser.add_argument('--num_nodes', type=int, default=100, help='Number of Nodes (default: 100)')
 parser.add_argument('--num_of_paths', type=int, default=20, help='Number of Paths (default: 1)')
-
 
 args = parser.parse_args()
 
