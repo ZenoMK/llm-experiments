@@ -377,7 +377,7 @@ class AttentionVisualizer:
                 if path_length not in paths_by_length:
                     paths_by_length[path_length] = []
                 paths_by_length[path_length].append(" ".join(numbers))
-
+        print(paths_by_length.items())
         for path_length, paths in paths_by_length.items():
             for layer in layers:
                 for head in heads:
@@ -413,6 +413,7 @@ class AttentionVisualizer:
         plt.ylabel("Query Tokens")
         plt.title(f"Attention Head {head} - Layer {layer} - Path Length {path_length}")
         plt.savefig(os.path.join(self.out_dir, f"attention_{layer}_layer_{head}_head_length_{path_length}.png"))
+        print(self.out_dir)
         plt.close()
 
     def _plot_attention(

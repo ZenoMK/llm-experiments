@@ -18,7 +18,7 @@ import seaborn as sns
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ckpt_iter', type=int, default=10000)
-parser.add_argument('--graph_type', type=str, default='simple_graph')
+parser.add_argument('--graph_type', type=str, default='markov_chain')
 parser.add_argument('--config', type=str, default='1_1_120')
 parser.add_argument('--temperature', type=float, default=1)
 parser.add_argument('--device', type=str, default='cpu')
@@ -120,5 +120,8 @@ model.load_state_dict(state_dict)
 
 model.eval()
 model.to(device)
-
+tokenizer = tiktoken.get_encoding("gpt2")
+print(out_dir)
+viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/train_{num_of_paths}.txt', meta_path=meta_path)
+viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="21 44 21 23 30 32 44", problem = "path")
 evaluate_model_against_graph(model, path_graph, tokenizer)
