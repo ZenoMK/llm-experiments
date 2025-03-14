@@ -1,0 +1,14 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# venv
+**/venv/
+
+# generated files
+/out/
+data/simple_graph/*
+!data/simple_graph/*.py
+
+# Ignore __pycache__ directories
+__pycache__/
