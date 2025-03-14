@@ -1,6 +1,11 @@
 
 import os
+
+# Add the parent directory to the Python path
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from model import GPTConfig, GPT
+
 import numpy as np
 import networkx as nx
 import argparse
