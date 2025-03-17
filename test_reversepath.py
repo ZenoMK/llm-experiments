@@ -6,6 +6,7 @@ from model import GPTConfig, GPT
 import numpy as np
 import networkx as nx
 import argparse
+import random
 import pickle
 import re
 import torch
@@ -67,7 +68,7 @@ model.to(device)
 tokenizer = tiktoken.get_encoding("gpt2")
 print(type(out_dir))
 viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
-viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="21 44 21 23 30 32 44", problem = "path")
+#viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="45 99 45 92 99 92 45", problem = "path", specific_path=False)
 
 
 path_graph = f'{data_path}/path_graph.graphml'
@@ -90,6 +91,7 @@ def find_third_number_position(number_string):
 """
     numbers = number_string.split()
     third_number_index = 2
+    third_number_index = random.randint(3, len(numbers) // 2)
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1
     return position
 
@@ -193,7 +195,7 @@ from tqdm import tqdm
 batch_size = 1000
 ix = torch.randint(len(encode_texts), (batch_size,))
 
-with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'w') as f:
+with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partialpath.txt', 'w') as f:
     pass
 
 wrong = 0
@@ -213,7 +215,7 @@ for i in tqdm(range(10)):
     correct_lengths = []
     incorrect_lengths = []
 
-    with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'a') as f:
+    with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partialpath.txt', 'a') as f:
         for t, item in enumerate(y_pred):
             symbol = check_path(path_graph, item)
             path_len = len(re.findall(r'\d+', item))

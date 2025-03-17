@@ -10,6 +10,7 @@ import argparse
 import pickle
 import re
 import torch
+import random
 from utils_final import (
     AttentionVisualizer
 )
@@ -77,8 +78,10 @@ path_graph = f'{data_path}/path_graph.graphml'
 path_graph = nx.read_graphml(path_graph)
 
 def find_third_number_position(number_string):  
-    numbers = number_string.split()  
-    third_number_index = 2 
+    numbers = number_string.split()
+    #TODO this is for partial paths
+    third_number_index = random.randint(3, len(numbers)-2)
+    print(third_number_index)
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1 
     return position 
 
@@ -142,31 +145,43 @@ for line in f:
     ground_truth.append(line)
     
 ground_truth = np.array(ground_truth)
-encode_texts = torch.tensor(encode_texts, dtype=torch.long, device=device)
+original_lengths = [len(seq) for seq in encode_texts]
+# Convert list of lists to a tensor with padding
+max_len = max(len(seq) for seq in encode_texts)
+encode_texts_padded = [seq + [0] * (max_len - len(seq)) for seq in encode_texts]
+
+
+encode_texts = torch.tensor(encode_texts_padded, dtype=torch.long, device=device)
+#encode_texts = torch.tensor(encode_texts, dtype=torch.long, device=device)
     
 from tqdm import tqdm
 
 batch_size = 1000
 ix = torch.randint(len(encode_texts), (batch_size,)) 
 
-with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'w') as f:
+with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partialpath.txt', 'w') as f:
     pass
 
 wrong = 0
 for i in tqdm(range(10)):
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
+    print(x[29])
 
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-
-    y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(batch_size)]
-
+    PAD_TOKEN = 0  # or whatever your model's padding token is
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(batch_size)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(batch_size)]
+    print(decode(y[0]).split('\n')[0])
+    #print(x[0])
+    #y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(batch_size)]
+    print(y_pred)
     # Lists to store path lengths
     correct_lengths = []
     incorrect_lengths = []
 
-    with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'a') as f:
+    with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partialpath.txt', 'a') as f:
         for t,item in enumerate(y_pred):
             symbol = check_path(path_graph, item)
             path_len = len(re.findall(r'\d+', item))
@@ -177,6 +192,7 @@ for i in tqdm(range(10)):
                 correct_lengths.append(path_len)
             f.write(item +" % " + symbol + '\n')
         f.write(f"Number of wrongs: {wrong}")
+
 
     # Plotting
 correct_counts = Counter(correct_lengths)

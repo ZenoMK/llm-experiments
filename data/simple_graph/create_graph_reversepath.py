@@ -85,8 +85,9 @@ def create_dataset(i):
                     train_set.append(path)  # Append reverse path
 
             if data[source_node][target_node] == -1:
-                path = [source_node, target_node] + random_walk(source_node, target_node)
-                test_set.append(path + path[-2::-1])  # Append reverse path
+                path = random_walk(source_node, target_node)
+                path = [source_node, target_node] + path + path[-2::-1]
+                test_set.append(path)  # Append reverse path
 
     return train_set, test_set
 

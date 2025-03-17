@@ -354,6 +354,7 @@ class AttentionVisualizer:
             heads,
             layers,
             problem,
+            specific_path = False,
             save_path="attention_weights.png",
             use_power_scale=False,
             gamma=0.5,
@@ -369,15 +370,23 @@ class AttentionVisualizer:
         self.model.eval()
         paths_by_length = {}
 
-        # Group paths by length
-        with open(self.test_path, "r") as file:
-            for line in file:
-                numbers = line.split()
-                path_length = len(numbers)
-                if path_length not in paths_by_length:
-                    paths_by_length[path_length] = []
+        if specific_path:
+            numbers = input_text.split()
+            path_length = len(numbers)
+            if specific_path:
+                paths_by_length[path_length] = []
                 paths_by_length[path_length].append(" ".join(numbers))
+        else:
+             # Group paths by length
+            with open(self.test_path, "r") as file:
+                for line in file:
+                    numbers = line.split()
+                    path_length = len(numbers)
+                    if path_length not in paths_by_length:
+                        paths_by_length[path_length] = []
+                    paths_by_length[path_length].append(" ".join(numbers))
         print(paths_by_length.items())
+
         for path_length, paths in paths_by_length.items():
             for layer in layers:
                 for head in heads:
