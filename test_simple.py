@@ -80,8 +80,8 @@ path_graph = nx.read_graphml(path_graph)
 def find_third_number_position(number_string):  
     numbers = number_string.split()
     #TODO this is for partial paths
-    #third_number_index = random.randint(3, len(numbers)-2)
-    third_number_index = 3
+    third_number_index = random.randint(3, len(numbers)-2)
+    #third_number_index = 3
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1 
     return position 
 
@@ -157,22 +157,23 @@ encode_texts = torch.tensor(encode_texts_padded, dtype=torch.long, device=device
 from tqdm import tqdm
 
 batch_size = 1000
-ix = torch.randint(len(encode_texts), (batch_size,)) 
+
 
 with open(out_dir + f'pred_{typedata}_{ckpt_iter}_fixedlen_partialpath.txt', 'w') as f:
     pass
 
 wrong = 0
-for i in tqdm(range(10)):
+for i in tqdm(range(1000)):
+    ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
-    print(x[29])
-
+    PAD_TOKEN = 0
+    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
-    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-    PAD_TOKEN = 0  # or whatever your model's padding token is
-    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(batch_size)]
-    y_pred = [decode(y[t]).split('\n')[0] for t in range(batch_size)]
+    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
     print(decode(y[0]).split('\n')[0])
     #print(x[0])
     #y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(batch_size)]
@@ -191,7 +192,7 @@ for i in tqdm(range(10)):
             else:
                 correct_lengths.append(path_len)
             f.write(item +" % " + symbol + '\n')
-        f.write(f"Number of wrongs: {wrong}")
+        f.write(f"Number of wrongs: {wrong}" + '\n')
 
 
     # Plotting

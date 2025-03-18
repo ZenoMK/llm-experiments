@@ -142,15 +142,18 @@ wrong = 0
 correct_lengths = []
 incorrect_lengths = []
 
-for i in tqdm(range(5), desc="Generating and validating outputs"):
+for i in tqdm(range(1000), desc="Generating and validating outputs"):
+    ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
-    #print(texts[ix])
-    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-    PAD_TOKEN = 0  # or whatever your model's padding token is
-    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(batch_size)]
-    y_pred = [decode(y[t]).split('\n')[0] for t in range(batch_size)]
+    x_gt = ground_truth[ix]
+    PAD_TOKEN = 0
+    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    #print(x)
+    #x = (torch.tensor(text, dtype=torch.long, device=device))
+    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
     print(decode(y[0]).split('\n')[0])
-    print(x[0])
 
     with open(pred_file, 'a') as f:
         for t, item in enumerate(y_pred):
@@ -175,7 +178,7 @@ for i in tqdm(range(5), desc="Generating and validating outputs"):
 
                 f.write(f"{texts[ix[t]]} % {generated_pre} % {validation}\n")
 
-        f.write(f"Number of wrongs: {wrong}\n")
+f.write(f"Number of wrongs: {wrong}\n")
 
 # Compute correctness proportions
 correct_counts = Counter(correct_lengths)

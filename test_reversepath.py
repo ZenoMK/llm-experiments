@@ -68,7 +68,7 @@ model.to(device)
 tokenizer = tiktoken.get_encoding("gpt2")
 print(type(out_dir))
 viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
-#viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="45 99 45 92 99 92 45", problem = "path", specific_path=False)
+viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="45 99 45 92 99 92 45", problem = "path", specific_path=False)
 
 
 path_graph = f'{data_path}/path_graph.graphml'
@@ -91,9 +91,9 @@ def find_third_number_position(number_string):
 """
     numbers = number_string.split()
     #third_number_index = 2
-    #third_number_index = random.randint(3, len(numbers) // 2)
+    third_number_index = random.randint(3, len(numbers) // 2)
     #third_number_index = numbers.index(numbers[1], 2) +1
-    third_number_index = 3
+    #third_number_index = 3
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index -1
     return position
 
@@ -202,16 +202,18 @@ with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partial_stpath.txt', 'w') as f
 
 wrong = 0
 non_reverses = 0
-for i in tqdm(range(10)):
+for i in tqdm(range(1000)):
+    ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
-    print(x[0])
-    # x = (torch.tensor(text, dtype=torch.long, device=device))
-    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-    PAD_TOKEN = 0  # or whatever your model's padding token is
-    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(batch_size)]
-    y_pred = [decode(y[t]).split('\n')[0] for t in range(batch_size)]
-    print(y_pred[0])
+    PAD_TOKEN = 0
+    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    print(x)
+    #x = (torch.tensor(text, dtype=torch.long, device=device))
+    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
+    print(decode(y[0]).split('\n')[0])
 
     # Lists to store path lengths
     correct_lengths = []
@@ -229,8 +231,8 @@ for i in tqdm(range(10)):
                     non_reverses += 1
                 correct_lengths.append(path_len)
             f.write(item + " % " + symbol + '\n')
-        f.write(f"Number of wrongs: {wrong}" + '\n')
-        f.write(f"Number of valid non-reversals: {non_reverses}" + '\n')
+f.write(f"Number of wrongs: {wrong}" + '\n')
+f.write(f"Number of valid non-reversals: {non_reverses}" + '\n')
 
     # Plotting
 correct_counts = Counter(correct_lengths)
