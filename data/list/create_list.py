@@ -8,7 +8,7 @@ def generate_random_list(num_nodes):
     length = random.randint(2, num_nodes)
     rand_list = [random.randint(0, num_nodes - 1) for _ in range(length)]
     rand_list = set(rand_list)
-    rand_list = sorted(list(rand_list))# Generate random integers (0-1000)
+    rand_list = list(rand_list) # Generate random integers (0-1000)
     reversed_list = list(reversed(rand_list))
     return rand_list, reversed_list
 

@@ -178,7 +178,7 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
 
                 f.write(f"{texts[ix[t]]} % {generated_pre} % {validation}\n")
 
-f.write(f"Number of wrongs: {wrong}\n")
+        f.write(f"Number of wrongs: {wrong}\n")
 
 # Compute correctness proportions
 correct_counts = Counter(correct_lengths)
