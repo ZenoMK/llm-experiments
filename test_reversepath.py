@@ -92,7 +92,8 @@ def find_third_number_position(number_string):
     numbers = number_string.split()
     #third_number_index = 2
     #third_number_index = random.randint(3, len(numbers) // 2)
-    third_number_index = numbers.index(numbers[1], 2) +1
+    #third_number_index = numbers.index(numbers[1], 2) +1
+    third_number_index = 3
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index -1
     return position
 
@@ -196,7 +197,7 @@ from tqdm import tqdm
 batch_size = 1000
 ix = torch.randint(len(encode_texts), (batch_size,))
 
-with open(out_dir + f'pred_{typedata}_{ckpt_iter}_stpath.txt', 'w') as f:
+with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partial_stpath.txt', 'w') as f:
     pass
 
 wrong = 0
@@ -216,7 +217,7 @@ for i in tqdm(range(10)):
     correct_lengths = []
     incorrect_lengths = []
 
-    with open(out_dir + f'pred_{typedata}_{ckpt_iter}_stpath.txt', 'a') as f:
+    with open(out_dir + f'pred_{typedata}_{ckpt_iter}_partial_stpath.txt', 'a') as f:
         for t, item in enumerate(y_pred):
             symbol = check_path(path_graph, item)
             path_len = len(re.findall(r'\d+', item))
