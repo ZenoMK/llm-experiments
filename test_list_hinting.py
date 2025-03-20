@@ -24,7 +24,7 @@ parser.add_argument('--temperature', type=float, default=1, help="Sampling tempe
 parser.add_argument('--device', type=str, default='cpu', help="Device (cpu/gpu)")
 parser.add_argument('--num_nodes', type=int, default=100, help="Number of nodes")
 parser.add_argument('--num_of_paths', type=int, default=20, help="Number of paths")
-parser.add_argument('--problem', type=str, default='path',help='Just for consistency')
+parser.add_argument('--problem', type=str, default='list',help='Just for consistency')
 
 args = parser.parse_args()
 dataset = args.graph_type
@@ -37,7 +37,7 @@ config = args.config
 problem=args.problem
 # Define paths
 data_path = f'data/{dataset}/{num_nodes}_list/'
-out_dir = f'out/{dataset}_{config}_{num_nodes}_list/'
+out_dir = f'out/{dataset}_{config}_{num_nodes}_{problem}/'
 
 # Load metadata
 meta_path = f'{data_path}/meta.pkl'
@@ -102,8 +102,9 @@ with open(test_file, 'r', encoding='utf-8') as f:
             texts.append(line.split(':')[0] + ':')
             encode_texts.append(encode(line.split(':')[0] + ':'))
         else:
-            line = line.split("%")[0] + "%" + line.split("%")[1][:6]
+            line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
             numbers = re.findall(r'\d+|%', line)
+            print(numbers)
             if numbers:
                 input_sequence = " ".join(numbers)
                 texts.append(input_sequence)
@@ -148,28 +149,30 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     x_gt = ground_truth[ix]
     PAD_TOKEN = 0
     x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
-    #print(x)
+    print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
     y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
     y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
-    #print(decode(y[0]).split('\n')[0])
+    print(decode(y[0]).split('\n')[0])
 
     with open(pred_file, 'a') as f:
         for t, item in enumerate(y_pred):
             original = texts[ix[t]].split()
-            print(original)
+            #print(original)
             percent_index = original.index('%')
+            #print(percent_index)
             original = original[:percent_index]
+            #print(original)
             try:
                 generated_pre = item.split(" % ")[1]
             except:
-                f.write(f"{texts[ix[t]]} % {item} % incorrect \n")
+                f.write(f"{texts[ix[t]]}  {item} % incorrect \n")
                 wrong += 1
                 continue
             else:
                 generated = generated_pre.split()
-                print(original)
+                #print(original)
                 print(generated)
                 validation = validate_output(original, generated)
                 path_len = len(original)
