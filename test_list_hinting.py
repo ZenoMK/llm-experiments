@@ -36,7 +36,7 @@ num_of_paths = args.num_of_paths
 config = args.config
 problem=args.problem
 # Define paths
-data_path = f'data/{dataset}/{num_nodes}_list/'
+data_path = f'data/{dataset}/{num_nodes}_{problem}/'
 out_dir = f'out/{dataset}_{config}_{num_nodes}_{problem}/'
 
 # Load metadata
@@ -129,7 +129,7 @@ ix = torch.randint(len(encode_texts), (batch_size,))
 
 pred_file = os.path.join(out_dir, f'pred_{typedata}_{ckpt_iter}_hints.txt')
 
-data_path = f'data/list/{num_nodes}_list'
+data_path = f'data/list/{num_nodes}_{problem}'
 tokenizer = tiktoken.get_encoding("gpt2")
 meta_path = f'{data_path}/meta.pkl'
 viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
