@@ -69,8 +69,8 @@ model.to(device)
 
 tokenizer = tiktoken.get_encoding("gpt2")
 print(type(out_dir))
-#viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
-#viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="21 44 21 23 30 32 44", problem = "path")
+viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
+viz.infer_and_visualize_attention( heads=[0], layers = [0], input_text="21 44 21 23 30 32 44", problem = "path")
 
 
 
@@ -80,8 +80,8 @@ path_graph = nx.read_graphml(path_graph)
 def find_third_number_position(number_string):  
     numbers = number_string.split()
     #TODO this is for partial paths
-    third_number_index = random.randint(3, len(numbers)-2)
-    #third_number_index = 3
+    #third_number_index = random.randint(3, len(numbers)-2)
+    third_number_index = 2
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1 
     return position 
 
@@ -159,7 +159,7 @@ from tqdm import tqdm
 batch_size = 1000
 
 
-with open(out_dir + f'pred_{typedata}_{ckpt_iter}_fixedlen_partialpath.txt', 'w') as f:
+with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'w') as f:
     pass
 
 wrong = 0
@@ -169,7 +169,7 @@ for i in tqdm(range(1000)):
     x_gt = ground_truth[ix]
     PAD_TOKEN = 0
     x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
-    print(x)
+    print(x[0])
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
     y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
@@ -182,7 +182,7 @@ for i in tqdm(range(1000)):
     correct_lengths = []
     incorrect_lengths = []
 
-    with open(out_dir + f'pred_{typedata}_{ckpt_iter}_fixedlen_partialpath.txt', 'a') as f:
+    with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'a') as f:
         for t,item in enumerate(y_pred):
             symbol = check_path(path_graph, item)
             path_len = len(re.findall(r'\d+', item))
