@@ -140,7 +140,7 @@ if __name__ == "__main__":
     data = numpy.zeros([num_nodes, num_nodes])
     for target_node in range(num_nodes):
         cnt = 0  # to avoid some target not appear in training dataset
-        for source_node in range(num_nodes):
+        for source_node in range(target_nodes):
             if source_node == target_node:
                 continue
             if source_node in reachability[target_node]:
