@@ -16,7 +16,7 @@ def generate_undirected_linegraph(num_nodes):
     # Add edges to form a line (path) graph
     for i in range(num_nodes - 1):
         G.add_edge(i, i + 1)
-    for i in range(46,56):
+    for i in range(48,51):
         G.add_edge(i+1,i)
 
     print(G.edges)
@@ -118,9 +118,9 @@ if __name__ == "__main__":
         os.makedirs(folder_name)
 
     data = numpy.zeros([num_nodes, num_nodes])
-    for source_node in range(46):
+    for source_node in range(48):
         cnt = 0  # to avoid some target not appear in training dataset
-        for target_node in range(56, num_nodes):
+        for target_node in range(52, num_nodes):
             if source_node == target_node:
                 continue
             elif random.random() < chance_in_train:
