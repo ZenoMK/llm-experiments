@@ -127,6 +127,9 @@ if __name__ == "__main__":
                 data[source_node][target_node] = 1
             else:
                 data[source_node][target_node] = -1
+        data[50][48] = 1
+        data[49][48] = 1
+        data[50][49] = 1
 
 
     train_set, test_set = create_dataset(num_of_paths)
