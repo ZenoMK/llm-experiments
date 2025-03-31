@@ -1,237 +1,237 @@
-[2025-03-31 13:03:47,374][INFO] step 0: train loss 4.6704, val loss 4.6705
-[2025-03-31 13:03:50,954][INFO] iter 0: loss 4.6703
-[2025-03-31 13:04:00,328][INFO] iter 100: loss 4.5095
-[2025-03-31 13:04:09,781][INFO] iter 200: loss 4.2321
-[2025-03-31 13:04:19,311][INFO] iter 300: loss 3.5981
-[2025-03-31 13:04:28,936][INFO] iter 400: loss 3.3322
-[2025-03-31 13:04:38,640][INFO] iter 500: loss 3.1200
-[2025-03-31 13:04:48,442][INFO] iter 600: loss 3.0466
-[2025-03-31 13:04:58,273][INFO] iter 700: loss 2.9814
-[2025-03-31 13:05:08,019][INFO] iter 800: loss 2.9532
-[2025-03-31 13:05:17,689][INFO] iter 900: loss 2.8805
-[2025-03-31 13:06:33,376][INFO] step 1000: train loss 2.8702, val loss 2.8704
-[2025-03-31 13:06:33,377][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:06:33,504][INFO] iter 1000: loss 2.8742
-[2025-03-31 13:06:43,195][INFO] iter 1100: loss 2.8514
-[2025-03-31 13:06:52,905][INFO] iter 1200: loss 2.8127
-[2025-03-31 13:07:02,602][INFO] iter 1300: loss 2.7684
-[2025-03-31 13:07:12,297][INFO] iter 1400: loss 2.7505
-[2025-03-31 13:07:22,007][INFO] iter 1500: loss 2.7509
-[2025-03-31 13:07:31,698][INFO] iter 1600: loss 2.6998
-[2025-03-31 13:07:41,376][INFO] iter 1700: loss 2.6918
-[2025-03-31 13:07:51,048][INFO] iter 1800: loss 2.6290
-[2025-03-31 13:08:00,720][INFO] iter 1900: loss 2.6032
-[2025-03-31 13:09:17,083][INFO] step 2000: train loss 2.5905, val loss 2.5916
-[2025-03-31 13:09:17,084][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:09:17,208][INFO] iter 2000: loss 2.5912
-[2025-03-31 13:09:26,909][INFO] iter 2100: loss 2.5687
-[2025-03-31 13:09:36,643][INFO] iter 2200: loss 2.5724
-[2025-03-31 13:09:46,384][INFO] iter 2300: loss 2.5455
-[2025-03-31 13:09:56,084][INFO] iter 2400: loss 2.4946
-[2025-03-31 13:10:05,766][INFO] iter 2500: loss 2.4766
-[2025-03-31 13:10:15,434][INFO] iter 2600: loss 2.4317
-[2025-03-31 13:10:25,110][INFO] iter 2700: loss 2.4315
-[2025-03-31 13:10:34,809][INFO] iter 2800: loss 2.4073
-[2025-03-31 13:10:44,502][INFO] iter 2900: loss 2.4091
-[2025-03-31 13:12:00,197][INFO] step 3000: train loss 2.3817, val loss 2.3823
-[2025-03-31 13:12:00,197][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:12:00,320][INFO] iter 3000: loss 2.3936
-[2025-03-31 13:12:10,016][INFO] iter 3100: loss 2.3778
-[2025-03-31 13:12:19,743][INFO] iter 3200: loss 2.3547
-[2025-03-31 13:12:29,452][INFO] iter 3300: loss 2.3412
-[2025-03-31 13:12:39,154][INFO] iter 3400: loss 2.3659
-[2025-03-31 13:12:49,018][INFO] iter 3500: loss 2.3326
-[2025-03-31 13:12:58,701][INFO] iter 3600: loss 2.3408
-[2025-03-31 13:13:08,375][INFO] iter 3700: loss 2.3174
-[2025-03-31 13:13:18,058][INFO] iter 3800: loss 2.3031
-[2025-03-31 13:13:27,743][INFO] iter 3900: loss 2.3016
-[2025-03-31 13:14:44,014][INFO] step 4000: train loss 2.3044, val loss 2.3053
-[2025-03-31 13:14:44,015][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:14:44,143][INFO] iter 4000: loss 2.3159
-[2025-03-31 13:14:53,839][INFO] iter 4100: loss 2.3008
-[2025-03-31 13:15:03,574][INFO] iter 4200: loss 2.3116
-[2025-03-31 13:15:13,330][INFO] iter 4300: loss 2.2911
-[2025-03-31 13:15:23,047][INFO] iter 4400: loss 2.2807
-[2025-03-31 13:15:32,736][INFO] iter 4500: loss 2.2885
-[2025-03-31 13:15:42,418][INFO] iter 4600: loss 2.2752
-[2025-03-31 13:15:52,089][INFO] iter 4700: loss 2.2652
-[2025-03-31 13:16:01,803][INFO] iter 4800: loss 2.2751
-[2025-03-31 13:16:11,503][INFO] iter 4900: loss 2.2645
-[2025-03-31 13:17:27,040][INFO] step 5000: train loss 2.2675, val loss 2.2681
-[2025-03-31 13:17:27,041][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:17:27,158][INFO] iter 5000: loss 2.2714
-[2025-03-31 13:17:36,879][INFO] iter 5100: loss 2.2700
-[2025-03-31 13:17:46,598][INFO] iter 5200: loss 2.2659
-[2025-03-31 13:17:56,309][INFO] iter 5300: loss 2.2503
-[2025-03-31 13:18:06,010][INFO] iter 5400: loss 2.2679
-[2025-03-31 13:18:15,721][INFO] iter 5500: loss 2.2621
-[2025-03-31 13:18:25,404][INFO] iter 5600: loss 2.2492
-[2025-03-31 13:18:35,092][INFO] iter 5700: loss 2.2321
-[2025-03-31 13:18:44,772][INFO] iter 5800: loss 2.2526
-[2025-03-31 13:18:54,472][INFO] iter 5900: loss 2.2276
-[2025-03-31 13:20:10,800][INFO] step 6000: train loss 2.2328, val loss 2.2321
-[2025-03-31 13:20:10,801][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:20:10,920][INFO] iter 6000: loss 2.2346
-[2025-03-31 13:20:20,625][INFO] iter 6100: loss 2.2377
-[2025-03-31 13:20:30,368][INFO] iter 6200: loss 2.2289
-[2025-03-31 13:20:40,110][INFO] iter 6300: loss 2.2201
-[2025-03-31 13:20:49,820][INFO] iter 6400: loss 2.2449
-[2025-03-31 13:20:59,518][INFO] iter 6500: loss 2.2175
-[2025-03-31 13:21:09,208][INFO] iter 6600: loss 2.2183
-[2025-03-31 13:21:18,890][INFO] iter 6700: loss 2.2305
-[2025-03-31 13:21:28,583][INFO] iter 6800: loss 2.2285
-[2025-03-31 13:21:38,287][INFO] iter 6900: loss 2.2222
-[2025-03-31 13:22:53,928][INFO] step 7000: train loss 2.2168, val loss 2.2158
-[2025-03-31 13:22:53,928][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:22:54,052][INFO] iter 7000: loss 2.2295
-[2025-03-31 13:23:03,782][INFO] iter 7100: loss 2.2241
-[2025-03-31 13:23:13,637][INFO] iter 7200: loss 2.2077
-[2025-03-31 13:23:23,341][INFO] iter 7300: loss 2.2067
-[2025-03-31 13:23:33,041][INFO] iter 7400: loss 2.2173
-[2025-03-31 13:23:42,728][INFO] iter 7500: loss 2.2034
-[2025-03-31 13:23:52,417][INFO] iter 7600: loss 2.2139
-[2025-03-31 13:24:02,115][INFO] iter 7700: loss 2.2004
-[2025-03-31 13:24:11,811][INFO] iter 7800: loss 2.2174
-[2025-03-31 13:24:21,512][INFO] iter 7900: loss 2.2043
-[2025-03-31 13:25:37,650][INFO] step 8000: train loss 2.2067, val loss 2.2057
-[2025-03-31 13:25:37,651][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:25:37,775][INFO] iter 8000: loss 2.2173
-[2025-03-31 13:25:47,489][INFO] iter 8100: loss 2.2014
-[2025-03-31 13:25:57,252][INFO] iter 8200: loss 2.2060
-[2025-03-31 13:26:07,007][INFO] iter 8300: loss 2.2100
-[2025-03-31 13:26:16,720][INFO] iter 8400: loss 2.2007
-[2025-03-31 13:26:26,421][INFO] iter 8500: loss 2.2064
-[2025-03-31 13:26:36,109][INFO] iter 8600: loss 2.2028
-[2025-03-31 13:26:45,800][INFO] iter 8700: loss 2.2099
-[2025-03-31 13:26:55,519][INFO] iter 8800: loss 2.2061
-[2025-03-31 13:27:05,219][INFO] iter 8900: loss 2.1869
-[2025-03-31 13:28:21,090][INFO] step 9000: train loss 2.2001, val loss 2.2010
-[2025-03-31 13:28:21,090][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:28:21,231][INFO] iter 9000: loss 2.1905
-[2025-03-31 13:28:30,969][INFO] iter 9100: loss 2.2053
-[2025-03-31 13:28:40,714][INFO] iter 9200: loss 2.1789
-[2025-03-31 13:28:50,451][INFO] iter 9300: loss 2.1898
-[2025-03-31 13:29:00,158][INFO] iter 9400: loss 2.2060
-[2025-03-31 13:29:09,851][INFO] iter 9500: loss 2.1948
-[2025-03-31 13:29:19,551][INFO] iter 9600: loss 2.2022
-[2025-03-31 13:29:29,237][INFO] iter 9700: loss 2.2086
-[2025-03-31 13:29:38,929][INFO] iter 9800: loss 2.1955
-[2025-03-31 13:29:48,626][INFO] iter 9900: loss 2.2090
-[2025-03-31 13:31:04,660][INFO] step 10000: train loss 2.1962, val loss 2.1968
-[2025-03-31 13:31:04,661][INFO] saving checkpoint to out/list_1_1_120_100_list
-[2025-03-31 13:31:04,785][INFO] iter 10000: loss 2.1908
-[2025-03-31 13:31:04,940][DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
-[2025-03-31 13:31:04,953][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,954][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Italic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Bold.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
-[2025-03-31 13:31:04,955][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/humor-sans/Humor-Sans.ttf', name='Humor Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-BoldItalic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:04,956][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
-[2025-03-31 13:31:05,013][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0.
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,013][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,014][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Italic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Bold.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/humor-sans/Humor-Sans.ttf', name='Humor Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-BoldItalic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
-[2025-03-31 13:31:05,015][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans ('/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+[2025-03-31 13:49:44,450][INFO] step 0: train loss 4.6721, val loss 4.6722
+[2025-03-31 13:49:48,132][INFO] iter 0: loss 4.6742
+[2025-03-31 13:49:57,583][INFO] iter 100: loss 3.9801
+[2025-03-31 13:50:07,054][INFO] iter 200: loss 3.0197
+[2025-03-31 13:50:16,553][INFO] iter 300: loss 2.0698
+[2025-03-31 13:50:26,053][INFO] iter 400: loss 1.3343
+[2025-03-31 13:50:35,556][INFO] iter 500: loss 1.2129
+[2025-03-31 13:50:45,044][INFO] iter 600: loss 1.1904
+[2025-03-31 13:50:54,541][INFO] iter 700: loss 1.1810
+[2025-03-31 13:51:04,019][INFO] iter 800: loss 1.1760
+[2025-03-31 13:51:13,493][INFO] iter 900: loss 1.1719
+[2025-03-31 13:52:33,666][INFO] step 1000: train loss 1.1672, val loss 1.1673
+[2025-03-31 13:52:33,667][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 13:52:33,825][INFO] iter 1000: loss 1.1661
+[2025-03-31 13:52:43,340][INFO] iter 1100: loss 1.1616
+[2025-03-31 13:52:52,851][INFO] iter 1200: loss 1.1575
+[2025-03-31 13:53:02,360][INFO] iter 1300: loss 1.1483
+[2025-03-31 13:53:11,857][INFO] iter 1400: loss 1.1492
+[2025-03-31 13:53:21,540][INFO] iter 1500: loss 1.1430
+[2025-03-31 13:53:31,010][INFO] iter 1600: loss 1.1401
+[2025-03-31 13:53:40,480][INFO] iter 1700: loss 1.1334
+[2025-03-31 13:53:49,956][INFO] iter 1800: loss 1.1309
+[2025-03-31 13:53:59,423][INFO] iter 1900: loss 1.1276
+[2025-03-31 13:55:19,644][INFO] step 2000: train loss 1.1224, val loss 1.1227
+[2025-03-31 13:55:19,644][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 13:55:19,774][INFO] iter 2000: loss 1.1211
+[2025-03-31 13:55:29,252][INFO] iter 2100: loss 1.1203
+[2025-03-31 13:55:38,774][INFO] iter 2200: loss 1.1177
+[2025-03-31 13:55:48,303][INFO] iter 2300: loss 1.1076
+[2025-03-31 13:55:57,801][INFO] iter 2400: loss 1.1033
+[2025-03-31 13:56:07,279][INFO] iter 2500: loss 1.1043
+[2025-03-31 13:56:16,748][INFO] iter 2600: loss 1.1019
+[2025-03-31 13:56:26,223][INFO] iter 2700: loss 1.0951
+[2025-03-31 13:56:35,695][INFO] iter 2800: loss 1.0926
+[2025-03-31 13:56:45,165][INFO] iter 2900: loss 1.0911
+[2025-03-31 13:58:01,752][INFO] step 3000: train loss 1.0848, val loss 1.0840
+[2025-03-31 13:58:01,753][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 13:58:01,882][INFO] iter 3000: loss 1.0873
+[2025-03-31 13:58:11,365][INFO] iter 3100: loss 1.0816
+[2025-03-31 13:58:20,867][INFO] iter 3200: loss 1.0826
+[2025-03-31 13:58:30,369][INFO] iter 3300: loss 1.0725
+[2025-03-31 13:58:39,868][INFO] iter 3400: loss 1.0756
+[2025-03-31 13:58:49,340][INFO] iter 3500: loss 1.0695
+[2025-03-31 13:58:58,808][INFO] iter 3600: loss 1.0677
+[2025-03-31 13:59:08,273][INFO] iter 3700: loss 1.0653
+[2025-03-31 13:59:17,744][INFO] iter 3800: loss 1.0558
+[2025-03-31 13:59:27,245][INFO] iter 3900: loss 1.0512
+[2025-03-31 14:00:47,326][INFO] step 4000: train loss 1.0544, val loss 1.0545
+[2025-03-31 14:00:47,327][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:00:47,461][INFO] iter 4000: loss 1.0556
+[2025-03-31 14:00:56,968][INFO] iter 4100: loss 1.0558
+[2025-03-31 14:01:06,507][INFO] iter 4200: loss 1.0522
+[2025-03-31 14:01:16,012][INFO] iter 4300: loss 1.0469
+[2025-03-31 14:01:25,497][INFO] iter 4400: loss 1.0416
+[2025-03-31 14:01:35,096][INFO] iter 4500: loss 1.0410
+[2025-03-31 14:01:44,564][INFO] iter 4600: loss 1.0402
+[2025-03-31 14:01:54,047][INFO] iter 4700: loss 1.0332
+[2025-03-31 14:02:03,516][INFO] iter 4800: loss 1.0323
+[2025-03-31 14:02:12,985][INFO] iter 4900: loss 1.0316
+[2025-03-31 14:03:31,766][INFO] step 5000: train loss 1.0304, val loss 1.0303
+[2025-03-31 14:03:31,766][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:03:31,922][INFO] iter 5000: loss 1.0311
+[2025-03-31 14:03:41,425][INFO] iter 5100: loss 1.0302
+[2025-03-31 14:03:50,936][INFO] iter 5200: loss 1.0204
+[2025-03-31 14:04:00,448][INFO] iter 5300: loss 1.0287
+[2025-03-31 14:04:09,958][INFO] iter 5400: loss 1.0218
+[2025-03-31 14:04:19,425][INFO] iter 5500: loss 1.0171
+[2025-03-31 14:04:28,895][INFO] iter 5600: loss 1.0118
+[2025-03-31 14:04:38,386][INFO] iter 5700: loss 1.0173
+[2025-03-31 14:04:47,837][INFO] iter 5800: loss 1.0174
+[2025-03-31 14:04:57,326][INFO] iter 5900: loss 1.0152
+[2025-03-31 14:06:15,614][INFO] step 6000: train loss 1.0114, val loss 1.0116
+[2025-03-31 14:06:15,615][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:06:15,751][INFO] iter 6000: loss 1.0081
+[2025-03-31 14:06:25,228][INFO] iter 6100: loss 1.0110
+[2025-03-31 14:06:34,834][INFO] iter 6200: loss 1.0086
+[2025-03-31 14:06:44,322][INFO] iter 6300: loss 1.0153
+[2025-03-31 14:06:53,797][INFO] iter 6400: loss 1.0067
+[2025-03-31 14:07:03,265][INFO] iter 6500: loss 1.0025
+[2025-03-31 14:07:12,756][INFO] iter 6600: loss 1.0025
+[2025-03-31 14:07:22,224][INFO] iter 6700: loss 1.0014
+[2025-03-31 14:07:31,697][INFO] iter 6800: loss 1.0009
+[2025-03-31 14:07:41,170][INFO] iter 6900: loss 0.9984
+[2025-03-31 14:09:01,221][INFO] step 7000: train loss 0.9975, val loss 0.9969
+[2025-03-31 14:09:01,221][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:09:01,353][INFO] iter 7000: loss 0.9970
+[2025-03-31 14:09:10,851][INFO] iter 7100: loss 0.9962
+[2025-03-31 14:09:20,361][INFO] iter 7200: loss 0.9991
+[2025-03-31 14:09:29,870][INFO] iter 7300: loss 0.9944
+[2025-03-31 14:09:39,430][INFO] iter 7400: loss 0.9875
+[2025-03-31 14:09:48,908][INFO] iter 7500: loss 0.9876
+[2025-03-31 14:09:58,381][INFO] iter 7600: loss 0.9887
+[2025-03-31 14:10:07,855][INFO] iter 7700: loss 0.9897
+[2025-03-31 14:10:17,326][INFO] iter 7800: loss 0.9913
+[2025-03-31 14:10:26,794][INFO] iter 7900: loss 0.9857
+[2025-03-31 14:11:47,422][INFO] step 8000: train loss 0.9882, val loss 0.9880
+[2025-03-31 14:11:47,422][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:11:47,564][INFO] iter 8000: loss 0.9848
+[2025-03-31 14:11:57,062][INFO] iter 8100: loss 0.9825
+[2025-03-31 14:12:06,593][INFO] iter 8200: loss 0.9878
+[2025-03-31 14:12:16,097][INFO] iter 8300: loss 0.9838
+[2025-03-31 14:12:25,591][INFO] iter 8400: loss 0.9833
+[2025-03-31 14:12:35,061][INFO] iter 8500: loss 0.9840
+[2025-03-31 14:12:44,533][INFO] iter 8600: loss 0.9868
+[2025-03-31 14:12:54,238][INFO] iter 8700: loss 0.9891
+[2025-03-31 14:13:03,710][INFO] iter 8800: loss 0.9822
+[2025-03-31 14:13:13,184][INFO] iter 8900: loss 0.9794
+[2025-03-31 14:14:31,727][INFO] step 9000: train loss 0.9821, val loss 0.9823
+[2025-03-31 14:14:31,728][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:14:31,853][INFO] iter 9000: loss 0.9783
+[2025-03-31 14:14:41,355][INFO] iter 9100: loss 0.9814
+[2025-03-31 14:14:50,962][INFO] iter 9200: loss 0.9767
+[2025-03-31 14:15:00,471][INFO] iter 9300: loss 0.9837
+[2025-03-31 14:15:09,983][INFO] iter 9400: loss 0.9815
+[2025-03-31 14:15:19,461][INFO] iter 9500: loss 0.9820
+[2025-03-31 14:15:28,943][INFO] iter 9600: loss 0.9839
+[2025-03-31 14:15:38,414][INFO] iter 9700: loss 0.9772
+[2025-03-31 14:15:47,885][INFO] iter 9800: loss 0.9799
+[2025-03-31 14:15:57,487][INFO] iter 9900: loss 0.9789
+[2025-03-31 14:17:16,827][INFO] step 10000: train loss 0.9781, val loss 0.9782
+[2025-03-31 14:17:16,828][INFO] saving checkpoint to out/list_1_1_120_100_list
+[2025-03-31 14:17:16,966][INFO] iter 10000: loss 0.9758
+[2025-03-31 14:17:17,137][DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+[2025-03-31 14:17:17,149][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,150][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,151][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Italic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Bold.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/humor-sans/Humor-Sans.ttf', name='Humor Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-BoldItalic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,152][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+[2025-03-31 14:17:17,216][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0.
+[2025-03-31 14:17:17,216][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,216][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,216][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,217][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Italic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Bold.ttf', name='Liberation Sans Narrow', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,218][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/humor-sans/Humor-Sans.ttf', name='Humor Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSansNarrow-BoldItalic.ttf', name='Liberation Sans Narrow', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+[2025-03-31 14:17:17,219][DEBUG] findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+[2025-03-31 14:17:17,219][DEBUG] findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans ('/usr/local/lib/python3.11/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
