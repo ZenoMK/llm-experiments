@@ -14,6 +14,7 @@ def generate_random_list(num_nodes):
         rand_set.add(random.randint(0, num_nodes - 1))
 
     rand_list = sorted(rand_set)  # Ensure sorted order
+    random.shuffle(rand_list)
     reversed_list = list(reversed(rand_list))  # Reverse the sorted list
 
     return rand_list, reversed_list
