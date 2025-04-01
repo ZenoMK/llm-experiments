@@ -2,16 +2,22 @@ import os
 import random
 import argparse
 
+
 def generate_random_list(num_nodes):
-    """Generate a random list of integers with length between 5 and 100,
+    """Generate a random list of 20 unique integers, ensuring it stays at length 20,
        followed by '%' and the reversed list."""
-    length = 20#random.randint(2, num_nodes)
-    rand_list = [random.randint(0, num_nodes - 1) for _ in range(length)]
-    rand_list = sorted(list(set(rand_list)))
-    #random.shuffle(rand_list)
-    #random.shuffle(rand_list) # Generate random integers (0-1000)
-    reversed_list = list(reversed(rand_list))
+    length = 20  # Fixed length
+    rand_set = set()
+
+    # Generate enough unique numbers to ensure we reach length 20
+    while len(rand_set) < length:
+        rand_set.add(random.randint(0, num_nodes - 1))
+
+    rand_list = sorted(rand_set)  # Ensure sorted order
+    reversed_list = list(reversed(rand_list))  # Reverse the sorted list
+
     return rand_list, reversed_list
+
 
 def format_list(rand_list, reversed_list):
     """Format the list as a string with a '%' separator."""

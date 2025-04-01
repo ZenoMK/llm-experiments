@@ -81,7 +81,7 @@ def find_third_number_position(number_string):
     numbers = number_string.split()
     #TODO this is for partial paths
     #third_number_index = random.randint(3, len(numbers)-2)
-    third_number_index = 2
+    third_number_index = 4
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1 
     return position 
 
@@ -106,13 +106,13 @@ def check_path(G, gen_str):
     for node in path:
         if int(node) > len(itos) or int(node) < 0:
             return 'wrong syntax'
-    
-    if path[2] != path[0] or path[-1] != path[1]:
-        return 'incorrect start/end'
         
     for i in range(2, len(path) - 1):
         if not G.has_edge(path[i], path[i + 1]):
             return f'non-existence path {path[i], path[i + 1]}'
+
+    if path[2] != path[0] or path[-1] != path[1]:
+        return 'incorrect start/end'
             
     return ''
 
@@ -163,6 +163,7 @@ with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'w') as f:
     pass
 
 wrong = 0
+valid_paths = 0
 for i in tqdm(range(1000)):
     ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
@@ -189,10 +190,14 @@ for i in tqdm(range(1000)):
             if(symbol != ""):
                 incorrect_lengths.append(path_len)
                 wrong = wrong + 1
+            if symbol == "" or symbol[0] != "n":
+                valid_paths += 1
+
             else:
                 correct_lengths.append(path_len)
             f.write(item +" % " + symbol + '\n')
         f.write(f"Number of wrongs: {wrong}" + '\n')
+        f.write(f"Number of valid paths: {valid_paths}" + '\n')
 
 
     # Plotting
