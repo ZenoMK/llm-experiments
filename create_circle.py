@@ -19,7 +19,6 @@ def generate_undirected_linegraph(num_nodes):
 
     G.add_edge(num_nodes - 1, 0)
 
-    print(G.edges)
     return G
 
 
@@ -97,7 +96,7 @@ if __name__ == "__main__":
 
     random_digraph = generate_undirected_linegraph(num_nodes)
 
-    folder_name = os.path.join(os.path.dirname(__file__), f'{num_nodes}_path')
+    folder_name = os.path.join(os.path.dirname(__file__), f'data/circle/{num_nodes}_path')
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
@@ -115,11 +114,8 @@ if __name__ == "__main__":
 
     train_set, test_set = create_dataset(num_of_paths)
 
-    obtain_stats(train_set)
-    print('number of source target pairs:', len(test_set))
-
-    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/train_{num_of_paths}.txt'))
-    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/test.txt'))
-    nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/path_graph.graphml'))
+    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'data/circle/{num_nodes}_path/train_{num_of_paths}.txt'))
+    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'data/circle/{num_nodes}_path/test.txt'))
+    nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'data/circle/{num_nodes}_path/path_graph.graphml'))
 
 

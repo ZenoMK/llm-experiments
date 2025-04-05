@@ -102,4 +102,3 @@ if __name__ == "__main__":
     write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_tree/test.txt'))
     nx.write_graphml(rooted_tree, os.path.join(os.path.dirname(__file__), f'{num_nodes}_tree/path_graph.graphml'))
 
-    print(f"Dataset generated in {folder_name}/")

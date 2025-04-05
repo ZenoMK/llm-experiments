@@ -23,21 +23,20 @@ dataset = args.graph_type
 shuffled_labels = args.shuffled_labels
 
 if(args.num_of_paths == 0):
-    train_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train.txt')
-    val_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/test.txt')
+    train_file_path = os.path.join(f'data/{dataset}/{args.num_nodes}_{problem}/train.txt')
+    val_file_path = os.path.join(f'data/{dataset}/{args.num_nodes}_{problem}/test.txt')
 else:
-    train_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.txt')
-    val_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/test.txt')
-    print(train_file_path)
+    train_file_path = os.path.join(f'data/{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.txt')
+    val_file_path = os.path.join(f'data/{dataset}/{args.num_nodes}_{problem}/test.txt')
 # test_file_path = os.path.join(os.path.dirname(__file__), 'test.txt')
 
 with open(train_file_path, 'r') as f:
     train_data = f.read()
-print(f"length of train dataset in characters: {len(train_data):,}")
+#print(f"length of train dataset in characters: {len(train_data):,}")
 
 with open(val_file_path, 'r') as f:
     val_data = f.read()
-print(f"length of val dataset in characters: {len(val_data):,}")
+#print(f"length of val dataset in characters: {len(val_data):,}")
 
 all_data = train_data + val_data
 
@@ -143,19 +142,17 @@ train_ids = process_reasoning(train_data)
 
 val_ids = process_reasoning(val_data)
 
-print(f"train has {len(train_ids):,} tokens")
-print(f"val has {len(val_ids):,} tokens")
 
 # export to bin files
 train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
 
 if(args.num_of_paths == 0):
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train.bin'))
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/val.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/train.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/val.bin'))
 else:
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.bin'))
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/val.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/val.bin'))
 
 unreachable = False;
 simple_format = True
@@ -173,8 +170,6 @@ meta = {
     'itos': itos, #if not shuffled_labels else shuffled_itos,
     'stoi': stoi #if not shuffled_labels else shuffled_stoi,
 }
-print(meta['itos'])
-print(meta['stoi'])
 
-with open(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/meta.pkl'), 'wb') as f:
+with open(f'data/{dataset}/{args.num_nodes}_{problem}/meta.pkl', 'wb') as f:
     pickle.dump(meta, f)
