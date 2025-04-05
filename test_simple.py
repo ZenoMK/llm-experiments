@@ -164,7 +164,7 @@ with open(out_dir + f'pred_{typedata}_{ckpt_iter}.txt', 'w') as f:
 
 wrong = 0
 valid_paths = 0
-for i in tqdm(range(1000)):
+for i in tqdm(range(10000)):
     ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
@@ -175,10 +175,10 @@ for i in tqdm(range(1000)):
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
     y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
     y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
-    print(decode(y[0]).split('\n')[0])
+    #print(decode(y[0]).split('\n')[0])
     #print(x[0])
     #y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(batch_size)]
-    print(y_pred)
+    #print(y_pred)
     # Lists to store path lengths
     correct_lengths = []
     incorrect_lengths = []

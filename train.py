@@ -80,7 +80,7 @@ out_dir = f'out/{dataset}_{n_layer}_{n_head}_{n_embd}_{num_nodes}_{problem}'
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
 eval_interval = max_iters // 10
-log_interval = max_iters // 100
+log_interval = max_iters // 1
 eval_iters = max_iters // 10
 
 eval_only = False # if True, script exits right after the first eval
