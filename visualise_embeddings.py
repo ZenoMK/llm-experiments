@@ -47,8 +47,9 @@ def visualize_embeddings_tsne(embeddings, labels):
     for i, label in enumerate(labels):
         plt.annotate(label, (reduced_embeddings[i, 0], reduced_embeddings[i, 1]), fontsize=8, alpha=0.7)
 
-    plt.title("t-SNE Visualization of Transformer Embeddings")
+    plt.title("t-SNE Visualization of Transformer Embeddings: Circle")
     plt.savefig("circle_embeddings.png")
+    return None
 
 
 def load_custom_gpt_from_checkpoint(checkpoint_path):
@@ -98,13 +99,13 @@ if __name__ == "__main__":
     stoi, itos = load_meta(meta_path)
 
     # Your sample text
-    text = "1 94 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94"
+    text = "0 99 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99"
 
     # Get embeddings
     embeddings = get_embeddings(text, model, stoi)
     # Split text into tokens
     tokenized_text = text.split(" ")
-    print(len(tokenized_text))
+    #print(len(tokenized_text))
     # Visualize
-    print(embeddings[:len(tokenized_text)])
+    #print(embeddings[:len(tokenized_text)])
     visualize_embeddings_tsne(embeddings[:len(tokenized_text)], tokenized_text)
