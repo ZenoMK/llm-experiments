@@ -10,4 +10,4 @@
 #SBATCH --error=myjob.%j.err
 
 ## <your code>
-batch run.sh
+bash run.sh
