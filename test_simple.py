@@ -81,7 +81,7 @@ def find_third_number_position(number_string):
     numbers = number_string.split()
     #TODO this is for partial paths
     #third_number_index = random.randint(3, len(numbers)-2)
-    third_number_index = 4
+    third_number_index = 2
     position = sum(len(num) for num in numbers[:third_number_index]) + third_number_index-1 
     return position 
 
