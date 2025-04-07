@@ -185,7 +185,7 @@ class GPT(nn.Module):
         elif isinstance(module, nn.Embedding):
             torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
 
-    def forward(self, idx, targets=None,return_attn_weights=False):
+    def forward(self, idx, targets=None,return_attn_weights=False, return_hidden_states = False):
         device = idx.device
         b, t = idx.size()
         assert t <= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
@@ -195,6 +195,8 @@ class GPT(nn.Module):
         tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
         pos_emb = self.transformer.wpe(pos) # position embeddings of shape (1, t, n_embd)
         x = self.transformer.drop(tok_emb + pos_emb)
+        hidden_states = [x] if return_hidden_states else None
+
 
         if return_attn_weights:
             attention_weights = []  # Store attention weights
@@ -207,6 +209,8 @@ class GPT(nn.Module):
                 x = block(x)
 
         x = self.transformer.ln_f(x)
+        if return_hidden_states:
+            hidden_states.append(x)
 
         if targets is not None:
             # if we are given some desired targets also calculate the loss
@@ -216,9 +220,13 @@ class GPT(nn.Module):
             # inference-time mini-optimization: only forward the lm_head on the very last position
             logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
             loss = None
-
+        if return_attn_weights and return_hidden_states:
+            return logits, loss, attention_weights, hidden_states
         if return_attn_weights:
             return logits, loss, attention_weights
+        if return_hidden_states:
+            return logits, loss, hidden_states
+
         return logits, loss
 
     def crop_block_size(self, block_size):
