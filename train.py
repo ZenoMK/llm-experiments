@@ -468,6 +468,7 @@ while True:
 
 torch.save(torch.tensor(corrects).cpu(), os.path.join(out_dir, f'corrects.pt'))
 torch.save(torch.tensor(totals).cpu(), os.path.join(out_dir, f'totals.pt'))
+print("training completed")
 
 if ddp:
     destroy_process_group()

@@ -173,3 +173,4 @@ meta = {
 
 with open(f'data/{dataset}/{args.num_nodes}_{problem}/meta.pkl', 'wb') as f:
     pickle.dump(meta, f)
+print("prep completed")

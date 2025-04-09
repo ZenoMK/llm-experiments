@@ -9,12 +9,12 @@
 #SBATCH --output=myjob.%j.out
 #SBATCH --error=myjob.%j.err
 
-python create_circle.py --num_nodes 100
+python create_circle.py --num_nodes 98
 
-python prepare_minigpt_path.py --num_nodes 100 --num_of_paths 20 --graph_type circle --problem path
+python prepare_minigpt_path.py --num_nodes 98 --num_of_paths 20 --graph_type circle --problem path
 
-python train.py --num_nodes 100 --problem path --dataset circle
+python train.py --num_nodes 98 --problem path --dataset circle
 
-python test_simple.py --num_nodes 100 --num_of_paths 20 --problem path --graph_type circle
+python test_simple.py --num_nodes 98 --num_of_paths 20 --problem path --graph_type circle
 
 
