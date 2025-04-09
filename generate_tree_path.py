@@ -98,7 +98,7 @@ if __name__ == "__main__":
     os.makedirs(folder_name, exist_ok=True)
 
 
-    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_tree/train_20.txt'))
-    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_tree/test.txt'))
-    nx.write_graphml(rooted_tree, os.path.join(os.path.dirname(__file__), f'{num_nodes}_tree/path_graph.graphml'))
+    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/train_20.txt'))
+    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/test.txt'))
+    nx.write_graphml(rooted_tree, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/path_graph.graphml'))
 
