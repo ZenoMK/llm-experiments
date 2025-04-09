@@ -94,11 +94,11 @@ if __name__ == "__main__":
     rooted_tree = generate_random_rooted_tree(num_nodes)
     train_set, test_set = create_dataset(rooted_tree)
 
-    folder_name = os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree')
+    folder_name = os.path.join(os.path.dirname(__file__), f'data/tree/{num_nodes}_tree')
     os.makedirs(folder_name, exist_ok=True)
 
 
-    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/train_20.txt'))
-    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/test.txt'))
-    nx.write_graphml(rooted_tree, os.path.join(os.path.dirname(__file__), f'data/{num_nodes}_tree/path_graph.graphml'))
+    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'data/tree/{num_nodes}_tree/train_20.txt'))
+    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'data/tree/{num_nodes}_tree/test.txt'))
+    nx.write_graphml(rooted_tree, os.path.join(os.path.dirname(__file__), f'data/tree/{num_nodes}_tree/path_graph.graphml'))
 
