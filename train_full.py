@@ -34,7 +34,7 @@ import re
 # Add the parent directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.updated_model import GPTConfig, GPT
+from updated_model import GPTConfig, GPT
 from logger import get_logger
 import logging
 
