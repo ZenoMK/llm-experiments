@@ -50,13 +50,15 @@ parser.add_argument('--n_embd', type=int, default=120, help='Size of the embeddi
 parser.add_argument('--max_iters', type=int, default=10000, help='Number of Iterations (default: 10000)')
 parser.add_argument('--num_nodes', type=int, default=100, help='Number of Nodes (default: 100)')
 parser.add_argument('--num_of_paths', type=int, default=20, help='Number of Paths (default: 1)')
-parser.add_argument('--use_identity_embeddings', action='store_true',
-                    help='Use identity matrix for embeddings (default: False)')
-parser.add_argument('--use_positional_embeddings', action='store_false', dest='use_positional_embeddings',
-                    help='Use positional embeddings (default: True)')
+parser.add_argument("--problem", type=str, default="path", help="Which algorithmic problem (path/cut)")
+parser.add_argument("--device", type=str, default="cuda", help="Which algorithmic problem (path/cut)")
+
+parser.add_argument('--use_identity_embeddings', action='store_true', help='Use identity matrix for embeddings (default: False)')
+parser.add_argument('--use_positional_embeddings', action='store_false', dest='use_positional_embeddings', help='Use positional embeddings (default: True)')
 
 args = parser.parse_args()
-
+use_identity_embeddings = args.use_identity_embeddings  # Default is False (use learned embeddings)
+use_positional_embeddings = args.use_positional_embeddings
 dataset = args.dataset
 n_layer = args.n_layer
 n_head = args.n_head
@@ -64,10 +66,19 @@ n_embd = args.n_embd
 max_iters = args.max_iters
 num_nodes = args.num_nodes
 num_of_paths = args.num_of_paths
-use_identity_embeddings = args.use_identity_embeddings  # Default is False (use learned embeddings)
-use_positional_embeddings = args.use_positional_embeddings  # Default is True (use positional embeddings)
+problem = args.problem
+device = args.device
 
-data_dir = os.path.join('data', f'{dataset}/{num_nodes}')
+data_dir = os.path.join('data', f'{dataset}/{num_nodes}_{problem}')
+with open(os.path.join(data_dir, 'meta.pkl'), 'rb') as f:
+    meta = pickle.load(f)
+
+stoi, itos = meta['stoi'], meta['itos']
+block_size = meta['block_size']
+
+out_dir = f'out/{dataset}_{n_layer}_{n_head}_{n_embd}_{num_nodes}_{problem}'
+
+data_dir = os.path.join('data', f'{dataset}/{num_nodes}_{problem}')
 with open(os.path.join(data_dir, 'meta.pkl'), 'rb') as f:
     meta = pickle.load(f)
 
