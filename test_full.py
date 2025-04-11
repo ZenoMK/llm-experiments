@@ -5,7 +5,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.updated_model import GPTConfig, GPT
+from updated_model import GPTConfig, GPT
 
 import numpy as np
 import networkx as nx
