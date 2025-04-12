@@ -38,14 +38,14 @@ temperature = args.temperature
 num_nodes = args.num_nodes
 num_of_paths = args.num_of_paths
 config = args.config
+print(problem)
 
 data_path = f'data/{dataset}/{num_nodes}_{problem}'
+print(data_path)
 meta_path = f'{data_path}/meta.pkl'
 embedding_config = args.embedding_config
 full_config = f'{config}_{embedding_config}'
 
-data_path = f'data/{dataset}/{num_nodes}'
-meta_path = f'{data_path}/meta.pkl'
 
 print(f"Loading meta from {meta_path}...")
 with open(meta_path, 'rb') as f:
@@ -56,7 +56,7 @@ max_new_tokens = meta['block_size']
 top_k = len(itos)
 simple_format = meta['simple_format']
 
-out_dir = f'out/{dataset}_{full_config}_{num_nodes}/'
+out_dir = f'out/{dataset}_{full_config}{num_nodes}/'
 
 if (num_of_paths == 0):
     ckpt_path = os.path.join(out_dir, f'{ckpt_iter}_ckpt.pt')

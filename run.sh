@@ -9,6 +9,8 @@
 #SBATCH --output=myjob.%j.out
 #SBATCH --error=myjob.%j.err
 
+conda activate pytorch_env
+
 python create_circle.py --num_nodes 98
 
 python prepare_minigpt_path.py --num_nodes 98 --num_of_paths 20 --graph_type circle --problem path
