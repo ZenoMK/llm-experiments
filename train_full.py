@@ -52,7 +52,6 @@ parser.add_argument('--num_nodes', type=int, default=100, help='Number of Nodes 
 parser.add_argument('--num_of_paths', type=int, default=20, help='Number of Paths (default: 1)')
 parser.add_argument("--problem", type=str, default="path", help="Which algorithmic problem (path/cut)")
 parser.add_argument("--device", type=str, default="cuda", help="Which algorithmic problem (path/cut)")
-
 parser.add_argument('--use_identity_embeddings', action='store_true', help='Use identity matrix for embeddings (default: False)')
 parser.add_argument('--use_positional_embeddings', action='store_false', dest='use_positional_embeddings', help='Use positional embeddings (default: True)')
 
