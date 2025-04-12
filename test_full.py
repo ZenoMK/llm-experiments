@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument('--num_of_paths', type=int, default=20)
     parser.add_argument("--problem", type=str, default="path", help="Which algorithmic problem (path/cut)")
     parser.add_argument('--embedding_config', type=str, default='', help='Optional suffix for embedding config (e.g., _identity_nopos)')
-
+    return parser.parse_args()
 args = parse_args()
 dataset = args.graph_type
 ckpt_iter = args.ckpt_iter
