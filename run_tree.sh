@@ -9,9 +9,11 @@
 #SBATCH --output=myjob.%j.out
 #SBATCH --error=myjob.%j.err
 
-conda activate pytorch_env
-
 module load gcc/11.1.0
+
+conda init bash
+
+conda activate pytorch_env
 
 python generate_tree_path.py --num_nodes 100
 
