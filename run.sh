@@ -11,6 +11,8 @@
 
 conda activate pytorch_env
 
+module load gcc/11.1.0
+
 python create_circle.py --num_nodes 98
 
 python prepare_minigpt_path.py --num_nodes 98 --num_of_paths 20 --graph_type circle --problem path
