@@ -26,8 +26,8 @@ if(args.num_of_paths == 0):
     train_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train.txt')
     val_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/test.txt')
 else:
-    train_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.txt')
-    val_file_path = os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/test.txt')
+    train_file_path = os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.txt')
+    val_file_path = os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/test.txt')
     print(train_file_path)
 # test_file_path = os.path.join(os.path.dirname(__file__), 'test.txt')
 
