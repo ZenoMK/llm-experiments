@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    folder_name = os.path.join(os.path.dirname(__file__), f'{args.num_nodes}_list')
+    folder_name = os.path.join(os.path.dirname(__file__), f'data/list/{args.num_nodes}_list_copy')
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
