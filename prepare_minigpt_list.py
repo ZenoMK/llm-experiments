@@ -178,5 +178,5 @@ meta = {
 print(meta['itos'])
 print(meta['stoi'])
 
-with open(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_list/meta.pkl'), 'wb') as f:
+with open(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_list/meta.pkl'), 'wb') as f:
     pickle.dump(meta, f)
