@@ -1,9 +1,11 @@
 import torch
 import matplotlib.pyplot as plt
-import seaborn as sns
+from sklearn.manifold import TSNE
 import argparse
 import pickle
 from model import GPT, GPTConfig
+import seaborn as sns
+
 
 def load_meta(meta_path):
     with open(meta_path, 'rb') as f:
@@ -12,14 +14,17 @@ def load_meta(meta_path):
     itos = meta['itos']
     return stoi, itos
 
+
 def custom_encode(text, stoi):
     text = text.rstrip()
     ss = text.split(" ")
     encoded = [stoi[ch] for ch in ss]
     return encoded
 
+
 def custom_decode(indices, itos):
     return " ".join(itos[i] for i in indices)
+
 
 def get_activations(text, model, stoi, device):
     idx = custom_encode(text, stoi)
@@ -27,18 +32,22 @@ def get_activations(text, model, stoi, device):
 
     activations = {}
 
-    # Hook into the first MLP layer
+    # Define a forward hook to grab activations from a specific layer
     def hook_fn(module, input, output):
         activations['layer'] = output.detach().cpu()
 
+    # Register the hook (you can change to a specific layer if you want)
     handle = model.transformer.h[0].mlp.c_fc.register_forward_hook(hook_fn)
 
+    # Forward pass
     logits, loss, _ = model(idx, return_hidden_states=True)
 
-    handle.remove()
+    handle.remove()  # Clean up hook
 
-    act = activations['layer'].squeeze(0)  # (seq_len, hidden_dim)
+    # activations['layer'] will have shape [batch, seq_len, hidden_dim]
+    act = activations['layer'].squeeze(0)  # remove batch dim -> (seq_len, hidden_dim)
     return act
+
 
 def visualize_activations_heatmap(activations, labels):
     # activations: (seq_len, hidden_dim)
@@ -50,6 +59,7 @@ def visualize_activations_heatmap(activations, labels):
     plt.tight_layout()
     plt.savefig("neuron_activation_heatmap.png")
     plt.close()
+
 
 def load_custom_gpt_from_checkpoint(checkpoint_path):
     checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
@@ -64,8 +74,31 @@ def load_custom_gpt_from_checkpoint(checkpoint_path):
     model.eval()
     return model
 
+
+def print_model_structure(model):
+    print("\n[INFO] Model Structure Overview:")
+
+    if hasattr(model, 'config'):
+        if hasattr(model.config, 'n_layer'):
+            print(f" - Number of layers: {model.config.n_layer}")
+        if hasattr(model.config, 'n_head'):
+            print(f" - Number of heads per layer: {model.config.n_head}")
+        if hasattr(model.config, 'n_embd'):
+            print(f" - Hidden size (embedding dim): {model.config.n_embd}")
+    else:
+        print(" - Model config not found. Trying manual inspection...")
+
+        if hasattr(model, 'transformer') and hasattr(model.transformer, 'h'):
+            num_layers = len(model.transformer.h)
+            print(f" - Number of layers: {num_layers}")
+        else:
+            print(" - Could not find transformer layers in model.")
+
+    print("-----------------------------------\n")
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Visualize Transformer Neuron Activations with Heatmap")
+    parser = argparse.ArgumentParser(description="Visualize Transformer Neuron Activations with t-SNE")
     parser.add_argument("--checkpoint_path", type=str, help="Path to the custom GPT model checkpoint (.pt file)")
     parser.add_argument('--ckpt_iter', type=int, default=10000)
     parser.add_argument('--graph_type', type=str, default='simple_graph')
@@ -86,14 +119,25 @@ if __name__ == "__main__":
     data_path = f'data/{dataset}/{num_nodes}_{problem}'
     meta_path = f'{data_path}/meta.pkl'
 
+    # Load model
     model = load_custom_gpt_from_checkpoint(args.checkpoint_path)
     model.to(args.device)
 
+    # Print model structure info
+    print_model_structure(model)
+
+    # Load meta.pkl
     stoi, itos = load_meta(meta_path)
 
-    text = "0 1 2 50 51 52 53 15 85 60 23"
+    # Your sample text
+    text = "14 61 65 14 29 35 43 52 61 65"
+
+
+    # Get activations
     activations = get_activations(text, model, stoi, args.device)
 
+    # Tokenized text
     tokenized_text = text.split(" ")
 
+    # Visualize
     visualize_activations_heatmap(activations[:len(tokenized_text)], tokenized_text)

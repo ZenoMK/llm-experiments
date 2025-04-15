@@ -100,7 +100,7 @@ if __name__ == "__main__":
     stoi, itos = load_meta(meta_path)
 
     # Your sample text
-    text = "0 1 2 50 51 52 53 15 85 60 23"
+    text = "18 52 65 18 52 61 65"
     #text = "0"
     # Get embeddings
     embeddings = get_embeddings(text, model, stoi)
