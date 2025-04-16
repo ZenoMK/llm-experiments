@@ -153,8 +153,8 @@ train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
 
 if(args.num_of_paths == 0):
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/train.bin'))
-    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'{dataset}/{args.num_nodes}_{problem}/val.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/train.bin'))
+    train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/val.bin'))
 else:
     train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/train_{args.num_of_paths}.bin'))
     train_ids.tofile(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{problem}/val.bin'))
@@ -178,5 +178,5 @@ meta = {
 print(meta['itos'])
 print(meta['stoi'])
 
-with open(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_list/meta.pkl'), 'wb') as f:
+with open(os.path.join(os.path.dirname(__file__), f'data/{dataset}/{args.num_nodes}_{args.problem}/meta.pkl'), 'wb') as f:
     pickle.dump(meta, f)
