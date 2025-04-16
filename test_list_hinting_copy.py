@@ -24,7 +24,7 @@ parser.add_argument('--temperature', type=float, default=1, help="Sampling tempe
 parser.add_argument('--device', type=str, default='cpu', help="Device (cpu/gpu)")
 parser.add_argument('--num_nodes', type=int, default=100, help="Number of nodes")
 parser.add_argument('--num_of_paths', type=int, default=20, help="Number of paths")
-parser.add_argument('--problem', type=str, default='list',help='Just for consistency')
+parser.add_argument('--problem', type=str, default='list_copy',help='Just for consistency')
 
 args = parser.parse_args()
 dataset = args.graph_type
