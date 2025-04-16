@@ -1,0 +1,14 @@
+[2025-04-16 18:12:26,692][INFO] step 0: train loss 4.6663, val loss 4.6662
+[2025-04-16 18:12:30,839][INFO] iter 0: loss 4.6659
+[2025-04-16 18:21:02,589][INFO] step 1000: train loss 4.1252, val loss 4.1252
+[2025-04-16 18:21:02,590][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
+[2025-04-16 18:29:34,236][INFO] step 2000: train loss 4.0058, val loss 4.0049
+[2025-04-16 18:29:34,236][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
+[2025-04-16 18:38:06,118][INFO] step 3000: train loss 3.9631, val loss 3.9628
+[2025-04-16 18:38:06,119][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
+[2025-04-16 18:46:37,687][INFO] step 4000: train loss 3.9341, val loss 3.9344
+[2025-04-16 18:46:37,688][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
+[2025-04-16 18:55:09,510][INFO] step 5000: train loss 3.9140, val loss 3.9152
+[2025-04-16 18:55:09,510][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
+[2025-04-16 19:03:41,830][INFO] step 6000: train loss 3.8991, val loss 3.8988
+[2025-04-16 19:03:41,831][INFO] saving checkpoint to out/list_1_1_120_100_list_copy
