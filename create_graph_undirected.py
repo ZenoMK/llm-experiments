@@ -139,7 +139,7 @@ if __name__ == "__main__":
     TC = nx.transitive_closure(random_digraph)
     reachability, feasible_pairs = obtain_reachability(TC)
 
-    folder_name = os.path.join(os.path.dirname(__file__), f'{num_nodes}_path')
+    folder_name = os.path.join(os.path.dirname(__file__), f'data/undirected_graph/{num_nodes}_path')
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
@@ -164,10 +164,10 @@ if __name__ == "__main__":
 
     obtain_stats(train_set)
     print('number of source target pairs:', len(test_set))
-    print("WARNING: Unidrected graph, reverse path")
+    print("WARNING: Undirected graph, reverse path")
 
-    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/train_{num_of_paths}.txt'))
-    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/test.txt'))
-    nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/path_graph.graphml'))
+    write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'data/undirected_graph/{num_nodes}_path/train_{num_of_paths}.txt'))
+    write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'data/undirected_graph/{num_nodes}_path/test.txt'))
+    nx.write_graphml(random_digraph, os.path.join(os.path.dirname(__file__), f'data/undirected_graph/{num_nodes}_path/path_graph.graphml'))
 
 
