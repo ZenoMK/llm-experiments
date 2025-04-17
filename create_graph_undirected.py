@@ -67,19 +67,25 @@ def create_dataset(i):
     train_set = []
     test_set = []
     train_num_per_pair = max(i, 1)
+
     for target_node in range(num_nodes):
-        cnt = 0  # to avoid some target not appear in training dataset
+        cnt = 0  # to avoid some target not appearing in the training dataset
         for source_node in range(target_node):
-            if (data[source_node][target_node] == 1):
+            if data[source_node][target_node] == 1:
                 if random_digraph.has_edge(source_node, target_node):
-                    train_set.append([source_node, target_node, source_node, target_node])
-                for ii in range(train_num_per_pair):
-                    train_set.append([source_node, target_node] + random_walk(source_node, target_node))
-            if (data[source_node][target_node] == -1):
-                test_set.append([source_node, target_node] + random_walk(source_node, target_node))
+                    path = [source_node, target_node, source_node, target_node, source_node]
+                    train_set.append(path)
+                for _ in range(train_num_per_pair):
+                    path = random_walk(source_node, target_node)
+                    path = [source_node, target_node] + path + path[-2::-1]
+                    train_set.append(path)  # Append reverse path
+
+            if data[source_node][target_node] == -1:
+                path = random_walk(source_node, target_node)
+                path = [source_node, target_node] + path + path[-2::-1]
+                test_set.append(path)  # Append reverse path
 
     return train_set, test_set
-
 
 
 def obtain_stats(dataset):
@@ -158,6 +164,7 @@ if __name__ == "__main__":
 
     obtain_stats(train_set)
     print('number of source target pairs:', len(test_set))
+    print("WARNING: Unidrected graph, reverse path")
 
     write_dataset(train_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/train_{num_of_paths}.txt'))
     write_dataset(test_set, os.path.join(os.path.dirname(__file__), f'{num_nodes}_path/test.txt'))

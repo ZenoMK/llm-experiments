@@ -143,7 +143,7 @@ wrong = 0
 correct_lengths = []
 incorrect_lengths = []
 
-for i in tqdm(range(1000), desc="Generating and validating outputs"):
+for i in tqdm(range(10000), desc="Generating and validating outputs"):
     ix = torch.randint(len(encode_texts), (batch_size,))
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
