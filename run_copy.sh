@@ -19,6 +19,8 @@ conda init bash
 
 conda activate pytorch_env
 
+conda install conda-forge::einops
+
 python create_list_copy.py --num_nodes 100
 
 python prepare_minigpt_list.py  --num_nodes 100 --problem list_copy
