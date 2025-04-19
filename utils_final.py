@@ -7,6 +7,7 @@ import json
 import numpy as np
 from itertools import chain
 from torch.utils.data import Dataset, DataLoader
+import imageio
 from torch.nn import (
     Parameter,
     Module,
@@ -325,18 +326,7 @@ class MultiheadGQA(Module):
 
 
 class AttentionVisualizer:
-    """
-    Utility class to visualize attention weights from a Transformer model.
-    """
-
     def __init__(self, model, tokenizer, out_dir, test_path, meta_path):
-        """
-        Initialize the visualizer with a model and tokenizer.
-
-        Args:
-            model: The Transformer model.
-            tokenizer: The tokenizer used for encoding input.
-        """
         self.model = model
         self.out_dir = out_dir
         self.test_path = test_path
@@ -346,139 +336,88 @@ class AttentionVisualizer:
             meta = pickle.load(f)
 
         self.stoi, self.itos = meta['stoi'], meta['itos']
-        #self.tokenizer = tokenizer
+        self.tokenizer = tokenizer  # optional, depending on how you encode
 
-    def infer_and_visualize_attention(
-            self,
-            input_text,
-            heads,
-            layers,
-            problem,
-            specific_path = False,
-            save_path="attention_weights.png",
-            use_power_scale=False,
-            gamma=0.5,
-    ):
-        """
-        Perform inference and visualize attention weights for given heads and layers,
-        separately for paths of different lengths.
-        """
-        plt.rc("xtick", labelsize=4)
-        plt.rc("ytick", labelsize=4)
-        plt.rc("axes", titlesize=4)
+    def encode(self, text):
+        # Assuming whitespace tokenization and vocab is a dict of str -> int
+        return [self.stoi[token] for token in text.split()]
 
-        self.model.eval()
-        paths_by_length = {}
+    def decode(self, ids):
+        return [self.itos[i] for i in ids]
 
-        if specific_path:
-            numbers = input_text.split()
-            path_length = len(numbers)
-            if specific_path:
-                paths_by_length[path_length] = []
-                paths_by_length[path_length].append(" ".join(numbers))
-        else:
-             # Group paths by length
-            with open(self.test_path, "r") as file:
-                for line in file:
-                    numbers = line.split()
-                    path_length = len(numbers)
-                    if path_length not in paths_by_length:
-                        paths_by_length[path_length] = []
-                    paths_by_length[path_length].append(" ".join(numbers))
-        print(paths_by_length.items())
+    def generate_and_visualize_attention_step_by_step(self, input_text, max_new_tokens=5, layer=0, head=0):
+        input_ids = torch.tensor(self.encode(input_text)).unsqueeze(0)
+        attention_per_step = []
+        generated = input_ids.clone()
+        full_generated = input_ids.squeeze(0).tolist()
 
-        for path_length, paths in paths_by_length.items():
-            for layer in layers:
-                for head in heads:
-                    all_attns = np.zeros((path_length, path_length))
+        for step in range(max_new_tokens):
+            logits, _, attn_weights = self.model(generated, return_attn_weights=True)
+            next_token = torch.argmax(logits[:, -1, :], dim=-1)
+            generated = torch.cat([generated, next_token.unsqueeze(0)], dim=1)
+            full_generated.append(next_token.item())
 
-                    for path in paths:
-                        if problem == "cut":
-                            data.simple_graph.prepare_minigpt_cut.encode(path)
-                        else:
-                            encoded_input = self.encode(path)
-                        encoded_input_tensor = torch.tensor(encoded_input).unsqueeze(0)
-                        logits, loss, attn_weights = self.model(encoded_input_tensor, return_attn_weights=True)
-                        if attn_weights is None or len(attn_weights) == 0:
-                            raise ValueError("Attention weights are missing. Ensure the model outputs them.")
+            if attn_weights is None or len(attn_weights) == 0:
+                raise ValueError("Missing attention weights. Ensure the model returns them.")
 
-                        attn_layer = attn_weights[layer]
-                        if isinstance(attn_layer, torch.Tensor):
-                            attn_matrix = attn_layer[0, head].detach().numpy()
-                        elif isinstance(attn_layer, list):
-                            attn_matrix = attn_layer[head][0].detach().numpy()
-                        else:
-                            raise TypeError(f"Unexpected attention weight type: {type(attn_layer)}")
-                        all_attns = np.add(all_attns, attn_matrix)
+            layer_attn = attn_weights[layer][0, head, -1].detach().cpu().numpy()  # (seq_len_so_far,)
+            attention_per_step.append(layer_attn)
 
-                    all_attns = np.divide(all_attns, len(paths))
-                    print(f"Path length {path_length}: {len(paths)} samples")
-                    self.plot_attention(all_attns, head, layer, path_length)
+            self.plot_single_step_attention(
+                layer_attn,
+                full_generated,
+                step,
+                layer,
+                head
+            )
 
-    def plot_attention(self, attn_matrix, head=0, layer=0, path_length=0):
-        plt.figure(figsize=(10, 8))  # Ensure consistent scaling
-        sns.heatmap(attn_matrix, cmap="viridis", cbar=True, square=True)
-        plt.xlabel("Key Tokens")
-        plt.ylabel("Query Tokens")
-        plt.title(f"Attention Head {head} - Layer {layer} - Path Length {path_length}")
-        plt.savefig(os.path.join(self.out_dir, f"attention_{layer}_layer_{head}_head_length_{path_length}.png"))
-        print(self.out_dir)
+        self.plot_combined_attention_steps(attention_per_step, full_generated, input_len=input_ids.shape[1])
+        self.make_attention_gif()
+
+    def plot_single_step_attention(self, attn_vector, generated_ids, step, layer, head):
+        plt.figure(figsize=(8, 1.5))
+        sns.heatmap([attn_vector], cmap="viridis", cbar=True, xticklabels=self.decode(generated_ids[:-1]), yticklabels=[f"Step {step}"])
+        plt.title(f"Layer {layer} Head {head} | Token: '{self.itos[generated_ids[-1]]}'")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        save_path = os.path.join(self.out_dir, f"rev_attn_step{step}_L{layer}_H{head}.png")
+        plt.savefig(save_path)
         plt.close()
 
-    def _plot_attention(
-            self,
-            ax,
-            attention_matrix,
-            labels,
-            head,
-            layer,
-            use_power_scale,
-            gamma,
-    ):
-        """
-        Plot attention weights as a heatmap on a given axis.
+    def plot_combined_attention_steps(self, attention_per_step, generated_ids, input_len, layers=None, heads=None, save_path="combined_grid.png"):
+        num_steps = len(attention_per_step)
+        rows = num_steps
+        cols = 1
 
-        Args:
-            ax: Matplotlib axis to plot on.
-            attention_matrix (numpy.ndarray): The attention weights matrix.
-            labels (list): Token labels for x and y axes.
-            head (int): The attention head being visualized.
-            layer (int): The Transformer layer being visualized.
-            use_power_scale (bool): Whether to apply power scale normalization.
-            gamma (float): Gamma value for power normalization.
-        """
-        # Select colormap and normalization
-        cmap = "Blues"
-        norm = (
-            mcolors.PowerNorm(gamma=gamma, vmin=0, vmax=1)
-            if use_power_scale
-            else mcolors.Normalize(vmin=0, vmax=1)
-        )
+        fig, axs = plt.subplots(rows, cols, figsize=(cols * 8, rows * 1.5))
 
-        # Plot attention weights
-        im = ax.matshow(attention_matrix, cmap=cmap, norm=norm)
+        if rows == 1:
+            axs = [axs]
 
-        # Add labels to axes
-        ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, rotation=90)
-        ax.tick_params(axis="x", bottom=True, top=True, labelbottom=True, labeltop=True)
-        ax.set_yticks(range(len(labels)))
-        ax.set_yticklabels(labels)
+        for step_idx, attn_vector in enumerate(attention_per_step):
+            ax = axs[step_idx]
+            sns.heatmap([attn_vector], ax=ax, cmap="viridis", cbar=False,
+                        xticklabels=self.decode(generated_ids[:input_len + step_idx]),
+                        yticklabels=[f"Step {step_idx}"])
+            ax.set_title(f"Token: '{self.itos[generated_ids[input_len + step_idx]]}'")
+            ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
 
-        # Add title
-        ax.set_title(f"Layer {layer}, Head {head}")
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.out_dir, save_path))
+        plt.close()
 
-        # Add colorbar nd size
-        plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-
-    def encode_string(self, s, stonum):
-        s = s.rstrip()
-        ss = s.split(" ")
-        encoded_string = [stonum[ch] for ch in ss]
-        return encoded_string
-
-    def encode(self, s):
-        return self.encode_string(s, self.stoi)
+    def make_attention_gif(self, prefix="rev_attn_step", save_name="attn_animation.gif"):
+        images = []
+        for fname in sorted(os.listdir(self.out_dir)):
+            if fname.startswith(prefix) and fname.endswith(".png"):
+                img_path = os.path.join(self.out_dir, fname)
+                images.append(imageio.imread(img_path))
+        if not images:
+            print("No PNGs found for GIF.")
+            return
+        gif_path = os.path.join(self.out_dir, save_name)
+        imageio.mimsave(gif_path, images, duration=0.8)
+        print(f"Saved attention animation to {gif_path}")
 
 
 
