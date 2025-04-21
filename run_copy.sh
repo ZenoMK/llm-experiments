@@ -9,12 +9,10 @@
 #SBATCH --output=myjob.%j.out
 #SBATCH --error=myjob.%j.err
 
-module load gcc/11.1.0
-
 module load anaconda3/2022.05
 
 source /shared/centos7/anaconda3/2022.05/etc/profile.d/conda.sh
-
+module load gcc/11.1.0
 conda init bash
 
 conda activate pytorch_env
