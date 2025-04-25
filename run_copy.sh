@@ -19,10 +19,10 @@ conda activate pytorch_env
 
 conda install conda-forge::einops
 
-python create_list_copy.py --num_nodes 100
+python create_list.py --num_nodes 100 --problem list_unsorted_varlength_duplicates
 
-python prepare_minigpt_list.py  --num_nodes 100 --problem list_copy
+python prepare_minigpt_list.py  --num_nodes 100 --problem list_unsorted_varlength_duplicates
 
-python train.py --num_nodes 100 --max_iter 10000  --problem list_copy --dataset list --num_of_paths 20 --n_head 6 --n_layer 6
+python train.py --num_nodes 100 --max_iter 10000  --problem list_unsorted_varlength_duplicates --dataset list --num_of_paths 20 --n_head 1 --n_layer 1
 
-python test_list_hinting.py --num_nodes 100 --problem list_copy  --ckpt_iter 10000
+python test_list_hinting.py --num_nodes 100 --problem list_unsorted_varlength_duplicates  --ckpt_iter 10000
