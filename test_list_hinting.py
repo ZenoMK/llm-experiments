@@ -103,8 +103,7 @@ with open(test_file, 'r', encoding='utf-8') as f:
             encode_texts.append(encode(line.split(':')[0] + ':'))
         else:
             line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
-            numbers = re.findall(r'\d+|%', line)
-            print(numbers)
+            numbers = re.findall(r'\d+|%|\[PAD\]', line)
             if numbers:
                 input_sequence = " ".join(numbers)
                 texts.append(input_sequence)
@@ -148,13 +147,14 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
     PAD_TOKEN = 0
-    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
-    print(x)
+    #x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    x = torch.tensor([x[t].tolist() for t in range(1)])
+    #print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
-    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
-    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
-    print(decode(y[0]).split('\n')[0])
+    #y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(1)]
+    #print(decode(y[0].tolist()).split('\n')[0])
 
     with open(pred_file, 'a') as f:
         for t, item in enumerate(y_pred):
@@ -174,6 +174,7 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
                 generated = generated_pre.split()
                 #print(original)
                 print(generated)
+                print(original)
                 validation = validate_output(original, generated)
                 path_len = len(original)
 
