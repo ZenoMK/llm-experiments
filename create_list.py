@@ -38,16 +38,12 @@ def format_list_varlength(rand_list, reversed_list, num_nodes):
     content = " ".join(map(str, rand_list)) + " % " + " ".join(map(str, reversed_list))
     tokens = content.split()
     pad_token = "[PAD]"
-    total_length = num_nodes * 2 + 2
+    total_length = num_nodes
 
     # Calculate how many [PAD] tokens are needed
-    pad_needed = total_length - len(tokens)
+    pad_needed = total_length - len(rand_list)
 
-    # Add half before and half after (favoring end if odd)
-    pad_before = pad_needed // 2
-    pad_after = pad_needed - pad_before
-
-    padded_tokens = [pad_token] * pad_before + tokens + [pad_token] * pad_after
+    padded_tokens = [pad_token] * pad_needed + tokens + [pad_token] * pad_needed
     return " ".join(padded_tokens) + "\n"
 
 
