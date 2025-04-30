@@ -44,3 +44,4 @@ saving checkpoint to {out_dir}
 step 10000: train loss 0.0866, val loss 0.0871
 saving checkpoint to {out_dir}
 iter 10000: loss 0.0846
+step 0: train loss 1.1893, val loss 1.1892
