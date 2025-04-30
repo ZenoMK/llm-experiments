@@ -172,8 +172,10 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
                 generated_pre = item.split(" % ")[1]
                 original = original[percent_index+1]
             except:
+                print(original)
                 f.write(f"{texts[ix[t]]}  {item} % incorrect \n")
                 wrong += 1
+                print("EXCEPT")
                 continue
             else:
                 generated = generated_pre.split()
