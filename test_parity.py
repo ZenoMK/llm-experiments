@@ -82,9 +82,11 @@ def decode(l):
 # Function to validate the generated output
 def validate_output(original, generated):
     """Checks if the generated sequence is the reverse of the input."""
+    print(original)
     original = re.findall(r'\d+', original)
+    print(original)
     #generated = re.findall(r'\d+|%|\[PAD\]', generated)
-    if str(sum(original)%2 == 0) == generated:
+    if str(sum(original) % 2 == 0) == generated:
         return "correct"
     else:
         return "incorrect"
@@ -133,8 +135,8 @@ pred_file = os.path.join(out_dir, f'pred_{typedata}_{ckpt_iter}_hints.txt')
 data_path = f'data/list/{num_nodes}_{problem}'
 tokenizer = tiktoken.get_encoding("gpt2")
 meta_path = f'{data_path}/meta.pkl'
-viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
-viz.generate_and_visualize_attention_step_by_step("2 5 5 11 16 17 31 32 40 43 46 48 60 64 65 72 76 85 86 99 %", max_new_tokens=20, layer=0, head=0)
+#viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
+#viz.generate_and_visualize_attention_step_by_step("2 5 5 11 16 17 31 32 40 43 46 48 60 64 65 72 76 85 86 99 %", max_new_tokens=20, layer=0, head=0)
 
 # Initialize empty file
 with open(pred_file, 'w') as f:
@@ -154,9 +156,9 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     #print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
-    #y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
-    y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(1)]
-    #print(decode(y[0].tolist()).split('\n')[0])
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
+    print(y_pred)
 
     with open(pred_file, 'a') as f:
         for t, item in enumerate(y_pred):
@@ -164,10 +166,11 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
             #print(original)
             percent_index = original.index('%')
             #print(percent_index)
-            original = original[:percent_index]
+            #print(item)
             #print(original)
             try:
                 generated_pre = item.split(" % ")[1]
+                original = original[percent_index+1]
             except:
                 f.write(f"{texts[ix[t]]}  {item} % incorrect \n")
                 wrong += 1
@@ -175,8 +178,8 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
             else:
                 generated = generated_pre.split()
                 #print(original)
-                print(generated)
-                print(original)
+                print(f"generated: {generated}")
+                print(f"original: {original}")
                 validation = validate_output(original, generated)
                 path_len = len(original)
 
