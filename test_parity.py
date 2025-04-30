@@ -82,9 +82,9 @@ def decode(l):
 # Function to validate the generated output
 def validate_output(original, generated):
     """Checks if the generated sequence is the reverse of the input."""
-    #original = re.findall(r'\d+|%|\[PAD\]', original)
+    original = re.findall(r'\d+', original)
     #generated = re.findall(r'\d+|%|\[PAD\]', generated)
-    if original[::-1] == generated:
+    if str(sum(original)%2 == 0) == generated:
         return "correct"
     else:
         return "incorrect"
