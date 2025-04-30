@@ -24,7 +24,7 @@ def format_string(rand_list, parity, num_nodes):
     # Calculate how many [PAD] tokens are needed
     pad_needed = total_length - len(rand_list)
     padded_tokens = [pad_token] * pad_needed + rand_list
-    return " ".join(map(str, padded_tokens))+ " % " + str(int(parity)) + "\n"
+    return " ".join(map(str, rand_list))+ " % " + str(int(parity)) + "\n"
 
 
 def write_dataset(num_samples, file_name, num_nodes, problem):
