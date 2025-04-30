@@ -163,16 +163,17 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     with open(pred_file, 'a') as f:
         for t, item in enumerate(y_pred):
             original = texts[ix[t]].split()
-            #print(original)
+            print(original)
             percent_index = original.index('%')
             #print(percent_index)
             #print(item)
             #print(original)
             try:
                 generated_pre = item.split(" % ")[1]
+                #print(original)
                 original = original[percent_index+1]
             except:
-                print(original)
+                #print(original)
                 f.write(f"{texts[ix[t]]}  {item} % incorrect \n")
                 wrong += 1
                 print("EXCEPT")
