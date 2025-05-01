@@ -29,6 +29,21 @@ def generate_random_list_unsorted_varlength_duplicates(num_nodes):
 
     return rand_list, reversed_list
 
+def generate_random_list_sorted_oddeven(num_nodes):
+    """Generate a random list of 20 unique integers, ensuring it stays at length 20,
+       followed by '%' and the reversed list."""
+    length = random.randint(2, num_nodes)
+
+    rand_list = [random.randint(0, num_nodes - 1) for _ in range(length)] # Reverse the sorted list
+    rand_list = sorted(rand_list)
+
+    if length % 2 == 0:
+        reversed_list = list(reversed(rand_list))
+    else:
+        reversed_list = rand_list
+
+    return rand_list, reversed_list
+
 def format_list_fixedlength(rand_list, reversed_list):
     """Format the list as a string with a '%' separator."""
     return " ".join(map(str, rand_list)) + " % " + " ".join(map(str, reversed_list)) + "\n"
@@ -58,6 +73,10 @@ def write_dataset(num_samples, file_name, num_nodes, problem):
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_sorted_fixedlength_noduplicates(num_nodes)
                 file.write(format_list_fixedlength(rand_list, reversed_list))
+        elif problem == "list_sorted_oddeven":
+            for _ in range(num_samples):
+                rand_list, reversed_list = generate_random_list_sorted_oddeven(num_nodes)
+                file.write(format_list_varlength(rand_list, reversed_list))
         else:
             return
 

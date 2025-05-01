@@ -81,12 +81,13 @@ def decode(l):
 
 # Function to validate the generated output
 def validate_output(original, generated):
-    """Checks if the generated sequence is the reverse of the input."""
-
-    original = re.findall(r'\d+', original)
-    print(original)
     #generated = re.findall(r'\d+|%|\[PAD\]', generated)
-    if str(sum(map(int, original)) % 2 == 0) == generated:
+    print("VALIDATE")
+    print(generated[0])
+    print(original[:-1])
+    print(sum(map(int, original[:-1])))
+    print(sum(map(int, original[:-1])) % 2 == 0)
+    if (sum(map(int, original[:-1])) % 2 == 0) == int(generated[0]):
         return "correct"
     else:
         return "incorrect"
@@ -106,8 +107,8 @@ with open(test_file, 'r', encoding='utf-8') as f:
             texts.append(line.split(':')[0] + ':')
             encode_texts.append(encode(line.split(':')[0] + ':'))
         else:
-            #line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
-            numbers = re.findall(r'\d+|%|\[PAD\]', line)
+            line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
+            numbers = re.findall(r'\d+|%|', line)
             if numbers:
                 input_sequence = " ".join(numbers)
                 texts.append(input_sequence)
@@ -151,9 +152,9 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
     PAD_TOKEN = 0
-    #x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
-    x = torch.tensor([x[t].tolist() for t in range(1)])
-    #print(x)
+    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    #x = torch.tensor([x[t].tolist() for t in range(1)])
+    print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
     y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
@@ -171,23 +172,22 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
             try:
                 generated_pre = item.split(" % ")[1]
                 #print(original)
-                original = original[:percent_index]
-                validation = (generated_pre[0] == original)
+                #original = original[percent_index+1]
+                #validation = (generated_pre[0] == original)
             except:
                 #print(original)
                 f.write(f"{texts[ix[t]]}  {item} % incorrect \n")
                 wrong += 1
-                print("EXCEPT")
                 continue
             else:
                 generated = generated_pre.split()
                 #print(original)
                 print(f"generated: {generated}")
                 print(f"original: {original}")
-                #validation = validate_output(original, generated)
+                validation = validate_output(original, generated)
                 path_len = len(original)
 
-                if validation == "incorrect":
+                if not validation:
                     incorrect_lengths.append(path_len)
                     wrong += 1
                 else:
