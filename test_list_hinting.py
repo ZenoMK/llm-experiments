@@ -84,10 +84,16 @@ def validate_output(original, generated):
     """Checks if the generated sequence is the reverse of the input."""
     #original = re.findall(r'\d+|%|\[PAD\]', original)
     #generated = re.findall(r'\d+|%|\[PAD\]', generated)
-    if original[::-1] == generated:
-        return "correct"
+    if len(original) % 2 == 0:
+        if original[::-1] == generated:
+            return "correct"
+        else:
+            return "incorrect"
     else:
-        return "incorrect"
+        if original == generated:
+            return "correct"
+        else:
+            return "incorrect"
 
 
 # Read test data
@@ -149,12 +155,12 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     x = encode_texts[ix]
     x_gt = ground_truth[ix]
     PAD_TOKEN = 0
-    #x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
+    x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
     x = torch.tensor([x[t].tolist() for t in range(1)])
     #print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
-    #y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
+    y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
     y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(1)]
     #print(decode(y[0].tolist()).split('\n')[0])
 
