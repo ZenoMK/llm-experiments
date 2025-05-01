@@ -76,7 +76,7 @@ def write_dataset(num_samples, file_name, num_nodes, problem):
         elif problem == "list_sorted_oddeven":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_sorted_oddeven(num_nodes)
-                file.write(format_list_varlength(rand_list, reversed_list))
+                file.write(format_list_varlength(rand_list, reversed_list, varlength))
         else:
             return
 

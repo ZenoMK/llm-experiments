@@ -83,14 +83,15 @@ def decode(l):
 def validate_output(original, generated):
     #generated = re.findall(r'\d+|%|\[PAD\]', generated)
     print("VALIDATE")
-    print(generated[0])
-    print(original[:-1])
-    print(sum(map(int, original[:-1])))
-    print(sum(map(int, original[:-1])) % 2 == 0)
-    if (sum(map(int, original[:-1])) % 2 == 0) == int(generated[0]):
-        return "correct"
-    else:
-        return "incorrect"
+    try:
+        print(generated[-1])
+        print(original[:-1])
+        if (sum(map(int, original[:-1])) % 2 == 0) == int(generated[-1]):
+            return True
+        else:
+            return False
+    except:
+        return False
 
 
 # Read test data
