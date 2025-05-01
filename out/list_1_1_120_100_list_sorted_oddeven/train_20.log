@@ -1,0 +1,23 @@
+step 0: train loss 4.0234, val loss 4.0239
+iter 0: loss 4.0267
+step 1000: train loss 0.5489, val loss 0.5482
+saving checkpoint to {out_dir}
+step 2000: train loss 0.4400, val loss 0.4391
+saving checkpoint to {out_dir}
+step 3000: train loss 0.4240, val loss 0.4249
+saving checkpoint to {out_dir}
+step 4000: train loss 0.4131, val loss 0.4133
+saving checkpoint to {out_dir}
+step 5000: train loss 0.3998, val loss 0.3995
+saving checkpoint to {out_dir}
+step 6000: train loss 0.3941, val loss 0.3945
+saving checkpoint to {out_dir}
+step 7000: train loss 0.3896, val loss 0.3889
+saving checkpoint to {out_dir}
+step 8000: train loss 0.3876, val loss 0.3884
+saving checkpoint to {out_dir}
+step 9000: train loss 0.3863, val loss 0.3859
+saving checkpoint to {out_dir}
+step 10000: train loss 0.3854, val loss 0.3857
+saving checkpoint to {out_dir}
+iter 10000: loss 0.3816
