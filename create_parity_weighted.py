@@ -7,7 +7,7 @@ import argparse
 def generate_string(num_nodes):
     """Generate a random list of 20 unique integers, ensuring it stays at length 20,
        followed by '%' and the reversed list."""
-    length = random.randint(2, 100)
+    length = 30
     string = [random.randint(0,1) for i in range(length)]
     parity = sum(string) % 2 == 0
 
