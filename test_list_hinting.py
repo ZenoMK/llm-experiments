@@ -82,8 +82,10 @@ def decode(l):
 # Function to validate the generated output
 def validate_output(original, generated):
     """Checks if the generated sequence is the reverse of the input."""
-    #original = re.findall(r'\d+|%|\[PAD\]', original)
-    #generated = re.findall(r'\d+|%|\[PAD\]', generated)
+    #original = re.findall(r'\d+', original)
+    #generated = re.findall(r'\d+', generated)
+    print(original)
+    print(generated)
     if len(original) % 2 == 0:
         if original[::-1] == generated:
             return "correct"
@@ -111,7 +113,7 @@ with open(test_file, 'r', encoding='utf-8') as f:
             encode_texts.append(encode(line.split(':')[0] + ':'))
         else:
             line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
-            numbers = re.findall(r'\d+|%|\[PAD\]', line)
+            numbers = re.findall(r'\d+|%|', line)
             if numbers:
                 input_sequence = " ".join(numbers)
                 texts.append(input_sequence)
@@ -157,11 +159,11 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
     PAD_TOKEN = 0
     x = torch.tensor([[token for token in x[t].tolist() if token != PAD_TOKEN] for t in range(1)])
     x = torch.tensor([x[t].tolist() for t in range(1)])
-    #print(x)
+    print(x)
     #x = (torch.tensor(text, dtype=torch.long, device=device))
     y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)  # or whatever your model's padding token is
     y = [[token for token in y[t].tolist() if token != PAD_TOKEN] for t in range(1)]
-    y_pred = [decode(y[t].tolist()).split('\n')[0] for t in range(1)]
+    y_pred = [decode(y[t]).split('\n')[0] for t in range(1)]
     #print(decode(y[0].tolist()).split('\n')[0])
 
     with open(pred_file, 'a') as f:
@@ -180,9 +182,9 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
                 continue
             else:
                 generated = generated_pre.split()
-                #print(original)
-                print(generated)
                 print(original)
+                print(generated)
+                #print(original)
                 validation = validate_output(original, generated)
                 path_len = len(original)
 
