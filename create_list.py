@@ -48,7 +48,7 @@ def format_list_fixedlength(rand_list, reversed_list):
     """Format the list as a string with a '%' separator."""
     return " ".join(map(str, rand_list)) + " % " + " ".join(map(str, reversed_list)) + "\n"
 
-def format_list_varlength(rand_list, reversed_list, num_nodes):
+def format_list_varlength_padded(rand_list, reversed_list, num_nodes):
     """Format the list with a '%' separator and pad with [PAD] tokens to length 202."""
     content = " ".join(map(str, rand_list)) + " % " + " ".join(map(str, reversed_list))
     tokens = content.split()
@@ -68,7 +68,7 @@ def write_dataset(num_samples, file_name, num_nodes, problem):
         if problem == "list_unsorted_varlength_duplicates":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_unsorted_varlength_duplicates(num_nodes)
-                file.write(format_list_varlength(rand_list, reversed_list, num_nodes))
+                file.write(format_list_fixedlength(rand_list, reversed_list, num_nodes))
         elif problem == "list_sorted_fixedlength_noduplicates":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_sorted_fixedlength_noduplicates(num_nodes)
@@ -76,7 +76,7 @@ def write_dataset(num_samples, file_name, num_nodes, problem):
         elif problem == "list_sorted_oddeven":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_sorted_oddeven(num_nodes)
-                file.write(format_list_varlength(rand_list, reversed_list, num_nodes))
+                file.write(format_list_fixedlength(rand_list, reversed_list, num_nodes))
         else:
             return
 

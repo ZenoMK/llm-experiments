@@ -86,7 +86,7 @@ def validate_output(original, generated):
     #generated = re.findall(r'\d+', generated)
     print(original)
     print(generated)
-    if len(original) % 2 == 0:
+    if len(original) % 2 == 1:
         if original[::-1] == generated:
             return "correct"
         else:
@@ -113,7 +113,7 @@ with open(test_file, 'r', encoding='utf-8') as f:
             encode_texts.append(encode(line.split(':')[0] + ':'))
         else:
             line = line.split("%")[0] + " %" #+ line.split("%")[1][:6]
-            numbers = re.findall(r'\d+|%|', line)
+            numbers = re.findall(r'\d+|%', line)
             if numbers:
                 input_sequence = " ".join(numbers)
                 texts.append(input_sequence)
@@ -182,8 +182,6 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
                 continue
             else:
                 generated = generated_pre.split()
-                print(original)
-                print(generated)
                 #print(original)
                 validation = validate_output(original, generated)
                 path_len = len(original)
@@ -193,8 +191,10 @@ for i in tqdm(range(1000), desc="Generating and validating outputs"):
                     wrong += 1
                 else:
                     correct_lengths.append(path_len)
-
-                f.write(f"{texts[ix[t]]} % {generated_pre} % {validation}\n")
+            print("here")
+            print(f"text: {texts[ix[t]]}")
+            print(f"gen: {generated_pre}")
+            f.write(f"{texts[ix[t]]} % {generated_pre} % {validation}\n")
 
         f.write(f"Number of wrongs: {wrong}\n")
 
