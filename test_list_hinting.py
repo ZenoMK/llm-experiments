@@ -142,7 +142,7 @@ data_path = f'data/list/{num_nodes}_{problem}'
 tokenizer = tiktoken.get_encoding("gpt2")
 meta_path = f'{data_path}/meta.pkl'
 viz = AttentionVisualizer(model, tokenizer, out_dir = out_dir, test_path=f'{data_path}/test.txt', meta_path=meta_path)
-viz.generate_and_visualize_attention_step_by_step("2 5 5 11 16 17 31 32 40 43 46 48 60 64 65 72 76 85 86 99 %", max_new_tokens=20, layer=0, head=0)
+viz.generate_and_visualize_attention_step_by_step("2 5 11 16 17 31 32 5 11 16 17 31 32 %", max_new_tokens=15, layer=0, head=0)
 
 # Initialize empty file
 with open(pred_file, 'w') as f:

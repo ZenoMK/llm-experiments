@@ -22,7 +22,7 @@ def generate_random_list_sorted_fixedlength_noduplicates(num_nodes):
 def generate_random_list_unsorted_varlength_duplicates(num_nodes):
     """Generate a random list of 20 unique integers, ensuring it stays at length 20,
        followed by '%' and the reversed list."""
-    length = random.choice([7,13])
+    length = random.choice([7,5,13,17])
 
     rand_list = [random.randint(0, num_nodes - 1) for _ in range(length)] # Reverse the sorted list
     reversed_list = list(reversed(rand_list))  # Reverse the sorted list
