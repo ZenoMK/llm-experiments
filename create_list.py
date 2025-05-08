@@ -68,7 +68,7 @@ def write_dataset(num_samples, file_name, num_nodes, problem):
         if problem == "list_unsorted_varlength_duplicates":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_unsorted_varlength_duplicates(num_nodes)
-                file.write(format_list_fixedlength(rand_list, reversed_list, num_nodes))
+                file.write(format_list_fixedlength(rand_list, reversed_list))
         elif problem == "list_sorted_fixedlength_noduplicates":
             for _ in range(num_samples):
                 rand_list, reversed_list = generate_random_list_sorted_fixedlength_noduplicates(num_nodes)
