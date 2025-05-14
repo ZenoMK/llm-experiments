@@ -4,7 +4,7 @@ from trl import SFTConfig, SFTTrainer
 import pandas as pd
 
 # === Load dataset ===
-dataset = load_dataset("csv", train_files="data/list/100_list_unsorted_varlength/train.csv")
+dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/train.csv")
 
 # === Load TinyLlama model and tokenizer ===
 model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
