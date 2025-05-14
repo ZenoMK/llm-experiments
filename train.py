@@ -52,7 +52,7 @@ parser.add_argument('--num_nodes', type=int, default=100, help='Number of Nodes 
 parser.add_argument('--num_of_paths', type=int, default=20, help='Number of Paths (default: 1)')
 parser.add_argument("--problem", type=str, default = "path", help ="Which algorithmic problem (path/cut)")
 parser.add_argument("--device", type=str, default = "cuda", help ="Which algorithmic problem (path/cut)")
-
+parser.add_argument("--attention_only", action="store_true", help="Use attention-only transformer (no MLP)")
 
 
 args = parser.parse_args()
@@ -66,6 +66,11 @@ num_nodes = args.num_nodes
 num_of_paths = args.num_of_paths
 problem = args.problem
 device = args.device
+attention_only = args.attention_only
+
+if args.attention_only:
+    print("loading attention-only model")
+    from attention_only_model import GPTConfig, GPT
 
 data_dir = os.path.join('data', f'{dataset}/{num_nodes}_{problem}')
 with open(os.path.join(data_dir, 'meta.pkl'), 'rb') as f:
