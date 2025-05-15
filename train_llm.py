@@ -11,6 +11,9 @@ dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/
 # === Load model and tokenizer ===
 model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 model = AutoModelForCausalLM.from_pretrained(model_name)
+model.gradient_checkpointing_enable()  # ✅ Add this
+
+
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # === Tokenize dataset manually ===
@@ -19,16 +22,16 @@ def tokenize(example):
 
 tokenized_dataset = dataset.map(tokenize, batched=True)
 
-# === Define training config ===
+
+# SFTConfig
 training_args = SFTConfig(
     output_dir="./tinyllama_finetuned",
-    per_device_train_batch_size=2,
+    per_device_train_batch_size=1,
     num_train_epochs=1,
     save_strategy="epoch",
     logging_dir="./logs",
     fp16=True,
 )
-
 # === Fine-tune the model ===
 trainer = SFTTrainer(
     model=model,
