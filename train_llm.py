@@ -2,6 +2,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, TextGenerationPipe
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
 import pandas as pd
+import os
+os.environ["WANDB_API_KEY"] = "39dcc97a6501681f4d456dbbe152d7668f72762d"
 
 # === Load dataset ===
 dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/train.csv")["train"]
