@@ -5,8 +5,8 @@ import pandas as pd
 import torch
 import os
 
-# === Optional: Disable W&B if interactive login fails ===
-os.environ["WANDB_MODE"] = "disabled"
+
+os.environ["WANDB_API_KEY"] = "39dcc97a6501681f4d456dbbe152d7668f72762d"
 
 # === Load dataset ===
 dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/train.csv")["train"]
