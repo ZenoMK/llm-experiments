@@ -13,24 +13,25 @@ dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/
 
 # === Load model and tokenizer ===
 model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
-model.gradient_checkpointing_enable()
-model.eval()
-model.to("cuda")
+model = AutoModelForCausalLM.from_pretrained(model_name)
+model.gradient_checkpointing_enable()  # Saves memory
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-# === Tokenize dataset ===
+# === Tokenize and add labels ===
 def tokenize(example):
-    prompt = f"<|user|>\n{example['Prompt']}\n<|assistant|>"
-    tokens = tokenizer(prompt, truncation=True, padding="max_length", max_length=256)
-    tokens["labels"] = tokens["input_ids"].copy()  # Add this line
+    tokens = tokenizer(
+        example["Prompt"],
+        truncation=True,
+        padding="max_length",
+        max_length=256
+    )
+    tokens["labels"] = tokens["input_ids"].copy()
     return tokens
 
+tokenized_dataset = dataset.map(tokenize, batched=True)
 
-tokenized_dataset = dataset.map(tokenize, batched=False)
-
-# === Training config ===
+# === SFTConfig ===
 training_args = SFTConfig(
     output_dir="./tinyllama_finetuned",
     per_device_train_batch_size=1,
@@ -38,17 +39,14 @@ training_args = SFTConfig(
     save_strategy="epoch",
     logging_dir="./logs",
     fp16=True,
-    logging_steps=10,
-    report_to=[],  # disable wandb
 )
 
-# === Fine-tune the model ===
+# === Fine-tune ===
 trainer = SFTTrainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_dataset,
 )
-
 trainer.train()
 
 # === Save model and tokenizer ===
@@ -56,26 +54,16 @@ trainer.model.save_pretrained(training_args.output_dir)
 tokenizer.save_pretrained(training_args.output_dir)
 
 # === Reload for inference ===
-model = AutoModelForCausalLM.from_pretrained(training_args.output_dir, torch_dtype=torch.float16)
-model.to("cuda").eval()
+model = AutoModelForCausalLM.from_pretrained(training_args.output_dir)
 tokenizer = AutoTokenizer.from_pretrained(training_args.output_dir)
 
-# === Load test set ===
+# === Load test set and run inference ===
 test_df = pd.read_csv("data/list/100_list_unsorted_varlength/test.csv")
 test_texts = test_df["Prompt"].tolist()
 
-# === Inference with pipeline (optional) ===
-pipe = TextGenerationPipeline(
-    model=model,
-    tokenizer=tokenizer,
-    pad_token_id=tokenizer.eos_token_id,
-    device=0
-)
+pipe = TextGenerationPipeline(model=model, tokenizer=tokenizer)
 
-print("\n=== Inference with Hugging Face pipeline ===")
 for text in test_texts:
-    prompt = f"<|user|>\n{text}\n<|assistant|>"
-    output = pipe(prompt, max_new_tokens=128)
-    print(f"\nPrompt: {text}")
+    output = pipe(text, max_new_tokens=50)
+    print(f"Input: {text}")
     print(f"Output: {output[0]['generated_text']}\n")
-
