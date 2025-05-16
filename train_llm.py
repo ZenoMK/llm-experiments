@@ -1,44 +1,42 @@
-import os
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
-os.environ["WANDB_API_KEY"] = "your_actual_api_key_here"
-os.environ["WANDB_DISABLED"] = "true"  # Disable W&B if needed
-
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    AutoConfig,
-    TextGenerationPipeline,
-)
+from transformers import AutoModelForCausalLM, AutoTokenizer, TextGenerationPipeline
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
 import pandas as pd
+import torch
+import os
+
+# === Optional: Disable W&B if interactive login fails ===
+os.environ["WANDB_MODE"] = "disabled"
 
 # === Load dataset ===
 dataset = load_dataset("csv", data_files="data/list/100_list_unsorted_varlength/train.csv")["train"]
 
-# === Load model config and enable gradient checkpointing early ===
+# === Load model and tokenizer ===
 model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-config = AutoConfig.from_pretrained(model_name)
-config.gradient_checkpointing = True  # ✅ Must be set BEFORE model instantiation
+model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
+model.gradient_checkpointing_enable()
+model.eval()
+model.to("cuda")
 
-model = AutoModelForCausalLM.from_pretrained(model_name, config=config)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # === Tokenize dataset ===
 def tokenize(example):
-    return tokenizer(example["Prompt"], truncation=True, padding="max_length", max_length=256)
+    prompt = f"<|user|>\n{example['Prompt']}\n<|assistant|>"
+    return tokenizer(prompt, truncation=True, padding="max_length", max_length=256)
 
-tokenized_dataset = dataset.map(tokenize, batched=True)
+tokenized_dataset = dataset.map(tokenize, batched=False)
 
 # === Training config ===
 training_args = SFTConfig(
     output_dir="./tinyllama_finetuned",
-    per_device_train_batch_size=1,  # ✅ Small batch for V100
+    per_device_train_batch_size=1,
     num_train_epochs=1,
     save_strategy="epoch",
     logging_dir="./logs",
-    fp16=True,  # ✅ Use FP16 if supported by GPU
-    max_seq_length=256,  # ✅ Must match tokenizer
+    fp16=True,
+    logging_steps=10,
+    report_to=[],  # disable wandb
 )
 
 # === Fine-tune the model ===
@@ -54,18 +52,35 @@ trainer.train()
 trainer.model.save_pretrained(training_args.output_dir)
 tokenizer.save_pretrained(training_args.output_dir)
 
-# === Reload model for inference ===
-model = AutoModelForCausalLM.from_pretrained(training_args.output_dir)
+# === Reload for inference ===
+model = AutoModelForCausalLM.from_pretrained(training_args.output_dir, torch_dtype=torch.float16)
+model.to("cuda").eval()
 tokenizer = AutoTokenizer.from_pretrained(training_args.output_dir)
 
-# === Load test data ===
+# === Load test set ===
 test_df = pd.read_csv("data/list/100_list_unsorted_varlength/test.csv")
 test_texts = test_df["Prompt"].tolist()
 
-# === Inference ===
-pipe = TextGenerationPipeline(model=model, tokenizer=tokenizer)
+# === Inference with pipeline (optional) ===
+pipe = TextGenerationPipeline(
+    model=model,
+    tokenizer=tokenizer,
+    pad_token_id=tokenizer.eos_token_id,
+    device=0
+)
 
+print("\n=== Inference with Hugging Face pipeline ===")
 for text in test_texts:
-    output = pipe(text, max_new_tokens=50)
-    print(f"Input: {text}")
+    prompt = f"<|user|>\n{text}\n<|assistant|>"
+    output = pipe(prompt, max_new_tokens=128)
+    print(f"\nPrompt: {text}")
     print(f"Output: {output[0]['generated_text']}\n")
+
+# === Manual generation (recommended for debugging) ===
+print("\n=== Inference with manual generate() ===")
+for text in test_texts:
+    prompt = f"<|user|>\n{text}\n<|assistant|>"
+    inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
+    outputs = model.generate(**inputs, max_new_tokens=128, pad_token_id=tokenizer.eos_token_id)
+    print(f"\nPrompt: {text}")
+    print("Output:", tokenizer.decode(outputs[0], skip_special_tokens=True))
