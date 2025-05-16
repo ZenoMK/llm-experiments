@@ -23,7 +23,10 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 # === Tokenize dataset ===
 def tokenize(example):
     prompt = f"<|user|>\n{example['Prompt']}\n<|assistant|>"
-    return tokenizer(prompt, truncation=True, padding="max_length", max_length=256)
+    tokens = tokenizer(prompt, truncation=True, padding="max_length", max_length=256)
+    tokens["labels"] = tokens["input_ids"].copy()  # Add this line
+    return tokens
+
 
 tokenized_dataset = dataset.map(tokenize, batched=False)
 
@@ -76,11 +79,3 @@ for text in test_texts:
     print(f"\nPrompt: {text}")
     print(f"Output: {output[0]['generated_text']}\n")
 
-# === Manual generation (recommended for debugging) ===
-print("\n=== Inference with manual generate() ===")
-for text in test_texts:
-    prompt = f"<|user|>\n{text}\n<|assistant|>"
-    inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
-    outputs = model.generate(**inputs, max_new_tokens=128, pad_token_id=tokenizer.eos_token_id)
-    print(f"\nPrompt: {text}")
-    print("Output:", tokenizer.decode(outputs[0], skip_special_tokens=True))
