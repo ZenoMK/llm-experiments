@@ -63,7 +63,7 @@ tokenizer = AutoTokenizer.from_pretrained(training_args.output_dir)
 pipe = TextGenerationPipeline(model=model, tokenizer=tokenizer)
 
 # === Load test dataset and perform inference ===
-test_df = pd.read_csv(training_args.output_dir)
+test_df = pd.read_csv("data/list/100_list_unsorted_varlength/test.csv")
 prompts = test_df["Prompt"].tolist()
 
 # === Helper ===
