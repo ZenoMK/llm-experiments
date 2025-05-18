@@ -60,14 +60,57 @@ tokenizer.save_pretrained(training_args.output_dir)
 # === Reload for inference ===
 model = AutoModelForCausalLM.from_pretrained(training_args.output_dir)
 tokenizer = AutoTokenizer.from_pretrained(training_args.output_dir)
-
-# === Load test dataset and perform inference ===
-test_df = pd.read_csv("data/list/100_list_unsorted_varlength/test.csv")
-test_prompts = test_df["Prompt"].tolist()
-
 pipe = TextGenerationPipeline(model=model, tokenizer=tokenizer)
 
-for prompt in test_prompts:
-    output = pipe(prompt, max_new_tokens=50)
-    print(f"Input: {prompt}")
-    print(f"Output: {output[0]['generated_text']}\n")
+# === Load test dataset and perform inference ===
+test_df = pd.read_csv(training_args.output_dir)
+prompts = test_df["Prompt"].tolist()
+
+# === Helper ===
+def parse_list(text):
+    return [int(tok) for tok in text.strip().replace("%", "").split() if tok.isdigit()]
+
+# === Run generation and evaluation ===
+results = []
+correct_count = 0
+
+for prompt in prompts:
+    input_str = prompt.strip()
+    input_tokens = parse_list(input_str)
+    expected_tokens = list(reversed(input_tokens))
+
+    try:
+        output = pipe(input_str, max_new_tokens=100, do_sample=False)[0]["generated_text"]
+        generated_part = output.split("%", 1)[-1].strip()
+        predicted_tokens = parse_list(generated_part)
+
+        is_correct = predicted_tokens == expected_tokens
+        if is_correct:
+            correct_count += 1
+    except Exception as e:
+        generated_part = f"[Error: {e}]"
+        predicted_tokens = []
+        is_correct = False
+
+    results.append({
+        "Prompt": prompt,
+        "Generated": " ".join(map(str, predicted_tokens)),
+        "Expected": " ".join(map(str, expected_tokens)),
+        "Correct": is_correct
+    })
+
+# === Save results CSV ===
+result_df = pd.DataFrame(results)
+result_csv_path = training_args.output_dir.replace(".csv", "_results.csv")
+result_df.to_csv(result_csv_path, index=False)
+
+# === Save accuracy summary ===
+accuracy = correct_count / len(results)
+summary_path = training_args.output_dir.replace(".csv", "_accuracy.txt")
+with open(summary_path, "w") as f:
+    f.write(f"Total samples: {len(results)}\n")
+    f.write(f"Correct predictions: {correct_count}\n")
+    f.write(f"Accuracy: {accuracy:.4f}\n")
+
+print(f"✅ Results saved to: {result_csv_path}")
+print(f"📊 Accuracy saved to: {summary_path}")
