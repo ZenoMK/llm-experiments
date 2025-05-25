@@ -1,57 +1,60 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer, TextGenerationPipeline
-from datasets import load_dataset, Dataset
-from trl import SFTConfig, SFTTrainer
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, TextGenerationPipeline
+from datasets import Dataset
 import pandas as pd
-import os
+import torch
 
-
-os.environ["WANDB_API_KEY"] = "39dcc97a6501681f4d456dbbe152d7668f72762d"
-
-
-# === Load and prepare training dataset ===
+# === Load training data ===
 df = pd.read_csv("data/list/100_list_unsorted_varlength/train.csv")
-
-# Combine Prompt and Answer into one string: "Prompt % Answer"
 df["text"] = df["Prompt"].astype(str) + " " + df["Answer"].astype(str)
-
-# Convert to Hugging Face Dataset format
 dataset = Dataset.from_pandas(df[["text"]])
 
-# === Load model and tokenizer ===
-model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-model = AutoModelForCausalLM.from_pretrained(model_name)
-model.gradient_checkpointing_enable()
-
+# === Load tokenizer and model ===
+model_name = "meta-llama/Llama-2-7b-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token  # Important for padding
 
-# === Tokenize dataset ===
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    device_map="auto",              # Automatically uses A100
+    torch_dtype=torch.float16,      # FP16 to reduce memory
+)
+
+# === Tokenize the dataset ===
 def tokenize(example):
     return tokenizer(
         example["text"],
         truncation=True,
         padding="max_length",
-        max_length=256
+        max_length=512,
     )
 
 tokenized_dataset = dataset.map(tokenize, batched=True)
 
-# === Define training config ===
-training_args = SFTConfig(
-    output_dir="./tinyllama_finetuned",
-    per_device_train_batch_size=1,
+# === Define training args ===
+training_args = TrainingArguments(
+    output_dir="./llama2_7b_full_finetuned",
+    per_device_train_batch_size=1,           # Small batch fits A100
+    gradient_accumulation_steps=8,           # Virtual batch of 8
     num_train_epochs=1,
+    logging_steps=10,
     save_strategy="epoch",
-    logging_dir="./logs",
+    evaluation_strategy="no",
     fp16=True,
+    logging_dir="./logs",
+    report_to="none"
 )
 
-# === Fine-tune model ===
-trainer = SFTTrainer(
+# === Create Trainer ===
+trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_dataset,
+    tokenizer=tokenizer,
 )
+
+# === Start training ===
 trainer.train()
+
 
 # === Save the fine-tuned model and tokenizer ===
 trainer.model.save_pretrained(training_args.output_dir)
