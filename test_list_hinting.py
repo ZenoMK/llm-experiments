@@ -1,5 +1,5 @@
 import os
-
+import sys
 import tiktoken
 import torch
 import argparse
@@ -9,11 +9,6 @@ import pickle
 import matplotlib.pyplot as plt
 from collections import Counter
 from tqdm import tqdm
-from model import GPTConfig, GPT
-from utils_final import (
-    AttentionVisualizer
-)
-import tiktoken
 
 # Argument parsing
 parser = argparse.ArgumentParser(description="Transformer Output Validation")
@@ -24,7 +19,18 @@ parser.add_argument('--temperature', type=float, default=1, help="Sampling tempe
 parser.add_argument('--device', type=str, default='cpu', help="Device (cpu/gpu)")
 parser.add_argument('--num_nodes', type=int, default=100, help="Number of nodes")
 parser.add_argument('--num_of_paths', type=int, default=20, help="Number of paths")
-parser.add_argument('--problem', type=str, default='list',help='Just for consistency')
+parser.add_argument('--problem', type=str, default='list', help='Just for consistency')
+parser.add_argument('--attention_only_model', action='store_true', help="Use attention-only model")
+
+args = parser.parse_args()
+
+# Conditional import based on model type
+if args.attention_only_model:
+    from attention_only_model import GPTConfig, GPT
+else:
+    from model import GPTConfig, GPT
+
+from utils_final import AttentionVisualizer
 
 args = parser.parse_args()
 dataset = args.graph_type
