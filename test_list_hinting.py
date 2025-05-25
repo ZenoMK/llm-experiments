@@ -92,16 +92,10 @@ def validate_output(original, generated):
     #generated = re.findall(r'\d+', generated)
     print(original)
     print(generated)
-    if len(original) % 2 == 1:
-        if original[::-1] == generated:
-            return "correct"
-        else:
-            return "incorrect"
+    if original[::-1] == generated:
+        return "correct"
     else:
-        if original == generated:
-            return "correct"
-        else:
-            return "incorrect"
+        return "incorrect"
 
 
 # Read test data
