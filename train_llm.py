@@ -21,12 +21,14 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # === Tokenize the dataset ===
 def tokenize(example):
-    return tokenizer(
+    tokens = tokenizer(
         example["text"],
         truncation=True,
         padding="max_length",
         max_length=512,
     )
+    tokens["labels"] = tokens["input_ids"].copy()
+    return tokens
 
 tokenized_dataset = dataset.map(tokenize, batched=True)
 
