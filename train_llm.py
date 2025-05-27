@@ -9,43 +9,36 @@ df = pd.read_csv("data/list/100_list_unsorted_varlength/train.csv")
 df["text"] = df["Prompt"].astype(str) + " " + df["Answer"].astype(str)
 dataset = Dataset.from_pandas(df[["text"]])
 
-# === Load tokenizer and model ===
-model_name = "meta-llama/Llama-2-7b-hf"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-tokenizer.pad_token = tokenizer.eos_token
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+from peft import get_peft_model, LoraConfig
+import torch
 
+model_name = "meta-llama/Llama-2-7b-hf"
+
+# Load base model with fp16 weights but disable AMP training (fp16=False)
 base_model = AutoModelForCausalLM.from_pretrained(
     model_name,
     device_map="auto",
     torch_dtype=torch.float16,
 )
+base_model.gradient_checkpointing_enable()  # optional, helps memory
 
-# === Apply LoRA ===
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+# LoRA config
 lora_config = LoraConfig(
     r=8,
     lora_alpha=32,
     target_modules=["q_proj", "v_proj"],
     lora_dropout=0.05,
     bias="none",
-    task_type=TaskType.CAUSAL_LM
+    task_type="CAUSAL_LM",
 )
 
+# Apply LoRA
 model = get_peft_model(base_model, lora_config)
 
-# === Tokenize the dataset ===
-def tokenize(example):
-    tokens = tokenizer(
-        example["text"],
-        truncation=True,
-        padding="max_length",
-        max_length=512,
-    )
-    tokens["labels"] = tokens["input_ids"].copy()
-    return tokens
-
-tokenized_dataset = dataset.map(tokenize, batched=True)
-
-# === Define training args ===
+# Training args — note fp16 disabled here
 training_args = TrainingArguments(
     output_dir="./llama2_7b_lora_finetuned",
     per_device_train_batch_size=1,
@@ -53,20 +46,21 @@ training_args = TrainingArguments(
     num_train_epochs=1,
     logging_steps=10,
     save_strategy="epoch",
-    fp16=True,
+    fp16=False,  # Disable AMP to avoid unscale error
     logging_dir="./logs",
-    report_to="none"
+    report_to="none",
 )
 
-# === Trainer ===
+# Your dataset loading and preprocessing here, e.g.
+# train_dataset = ...
+
 trainer = Trainer(
     model=model,
+    train_dataset=train_dataset,
     args=training_args,
-    train_dataset=tokenized_dataset,
     tokenizer=tokenizer,
 )
 
-# === Train ===
 trainer.train()
 
 # === Save fine-tuned LoRA adapter and tokenizer ===
