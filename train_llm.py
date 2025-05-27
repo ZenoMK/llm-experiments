@@ -56,7 +56,7 @@ training_args = TrainingArguments(
 
 trainer = Trainer(
     model=model,
-    train_dataset=train_dataset,
+    train_dataset=dataset,
     args=training_args,
     tokenizer=tokenizer,
 )
