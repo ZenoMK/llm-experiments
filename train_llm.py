@@ -53,7 +53,6 @@ training_args = TrainingArguments(
     num_train_epochs=1,
     logging_steps=10,
     save_strategy="epoch",
-    evaluation_strategy="no",
     fp16=True,
     logging_dir="./logs",
     report_to="none"
