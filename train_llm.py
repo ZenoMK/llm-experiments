@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, TextGenerationPipeline
 from datasets import Dataset
+from peft import LoraConfig, get_peft_model, TaskType
 import pandas as pd
 import torch
 
@@ -11,12 +12,25 @@ dataset = Dataset.from_pandas(df[["text"]])
 # === Load tokenizer and model ===
 model_name = "meta-llama/Llama-2-7b-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-tokenizer.pad_token = tokenizer.eos_token  # Important for padding
+tokenizer.pad_token = tokenizer.eos_token
 
-model = AutoModelForCausalLM.from_pretrained(
+base_model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    device_map="auto"
+    device_map="auto",
+    torch_dtype=torch.float16,
 )
+
+# === Apply LoRA ===
+lora_config = LoraConfig(
+    r=8,
+    lora_alpha=32,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.05,
+    bias="none",
+    task_type=TaskType.CAUSAL_LM
+)
+
+model = get_peft_model(base_model, lora_config)
 
 # === Tokenize the dataset ===
 def tokenize(example):
@@ -33,9 +47,9 @@ tokenized_dataset = dataset.map(tokenize, batched=True)
 
 # === Define training args ===
 training_args = TrainingArguments(
-    output_dir="./llama2_7b_full_finetuned",
-    per_device_train_batch_size=1,           # Small batch fits A100
-    gradient_accumulation_steps=8,           # Virtual batch of 8
+    output_dir="./llama2_7b_lora_finetuned",
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=8,
     num_train_epochs=1,
     logging_steps=10,
     save_strategy="epoch",
@@ -45,7 +59,7 @@ training_args = TrainingArguments(
     report_to="none"
 )
 
-# === Create Trainer ===
+# === Trainer ===
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -53,28 +67,28 @@ trainer = Trainer(
     tokenizer=tokenizer,
 )
 
-# === Start training ===
+# === Train ===
 trainer.train()
 
-
-# === Save the fine-tuned model and tokenizer ===
-trainer.model.save_pretrained(training_args.output_dir)
+# === Save fine-tuned LoRA adapter and tokenizer ===
+model.save_pretrained(training_args.output_dir)
 tokenizer.save_pretrained(training_args.output_dir)
 
 # === Reload for inference ===
-model = AutoModelForCausalLM.from_pretrained(training_args.output_dir)
+from peft import PeftModel
+
+base_model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", torch_dtype=torch.float16)
+model = PeftModel.from_pretrained(base_model, training_args.output_dir)
 tokenizer = AutoTokenizer.from_pretrained(training_args.output_dir)
 pipe = TextGenerationPipeline(model=model, tokenizer=tokenizer)
 
-# === Load test dataset and perform inference ===
+# === Inference ===
 test_df = pd.read_csv("data/list/100_list_unsorted_varlength/test.csv")
 prompts = test_df["Prompt"].tolist()
 
-# === Helper ===
 def parse_list(text):
     return [int(tok) for tok in text.strip().replace("%", "").split() if tok.isdigit()]
 
-# === Run generation and evaluation ===
 results = []
 correct_count = 0
 
@@ -103,14 +117,13 @@ for prompt in prompts:
         "Correct": is_correct
     })
 
-# === Save results CSV ===
+# === Save results ===
 result_df = pd.DataFrame(results)
-result_csv_path = training_args.output_dir.replace(".csv", "_results.csv")
+result_csv_path = training_args.output_dir + "_results.csv"
 result_df.to_csv(result_csv_path, index=False)
 
-# === Save accuracy summary ===
 accuracy = correct_count / len(results)
-summary_path = training_args.output_dir.replace(".csv", "_accuracy.txt")
+summary_path = training_args.output_dir + "_accuracy.txt"
 with open(summary_path, "w") as f:
     f.write(f"Total samples: {len(results)}\n")
     f.write(f"Correct predictions: {correct_count}\n")
