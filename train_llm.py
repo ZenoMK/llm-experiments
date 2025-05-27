@@ -15,8 +15,7 @@ tokenizer.pad_token = tokenizer.eos_token  # Important for padding
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    device_map="auto",              # Automatically uses A100
-    torch_dtype=torch.float16,      # FP16 to reduce memory
+    device_map="auto"
 )
 
 # === Tokenize the dataset ===
